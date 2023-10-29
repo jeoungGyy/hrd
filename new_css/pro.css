@@ -1,0 +1,8 @@
+
+/* 로딩중 */
+.loading_wrap{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:300;}
+.loading_wrap .loading_modal{position:absolute;top:0;left:0;width:100%;height:100%;background:url(../images/bg_modal.png) 0 0;}
+.loading_wrap .loading_bar{position:absolute;top:50%;left:50%;margin:-26px 0 0 -26px;}
+
+
+

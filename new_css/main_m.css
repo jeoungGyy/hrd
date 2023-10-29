@@ -1,0 +1,141 @@
+@charset "utf-8";
+/* ==============================
+* 공통 컨텐츠
+* ============================== */
+#mainTopWrap { position:fixed; height:600px; left: 0; right: 0; z-index: 0; }
+/*#mainTopWrap:after { position:absolute; z-index:1; bottom:0; content:''; background:#fff; width:100%; height:40px; border-top-left-radius:30px; border-top-right-radius:30px; }*/
+#mainTopWrap .mainKeyVisual { position:relative; height:600px;}
+#mainTopWrap .mainTopText { display:block; width:100%; color:#fff; font-size:40px; font-weight:200; letter-spacing:-1px; height: 600px; padding:190px 0 0 0; text-align:center; box-sizing: border-box; }
+#mainTopWrap .mainTopText strong { font-weight:700; }
+
+#mainTopWrap .mainKeyVisual .mainKeyVisual01 .mainTopText strong {color: #c5d4f7;}
+#mainTopWrap .mainKeyVisual .mainKeyVisual02 .mainTopText strong {color: #a8bff4;}
+#mainTopWrap .mainKeyVisual .mainKeyVisual03 .mainTopText strong {color: #aae7e8;}
+#mainTopWrap .mainKeyVisual .mainKeyVisual04 .mainTopText strong {color: #dbc5f4;}
+#mainTopWrap .mainKeyVisual .mainKeyVisual05 .mainTopText strong {color: #f4c5e6;}
+#mainTopWrap .mainKeyVisual .mainKeyVisual06 .mainTopText strong {color: #f6d8c1;}
+
+#mainTopWrap .mainKeyVisual .mainKeyVisual01 { background:url('/new_images/main/mainTopVisualM01.jpg') center top no-repeat; height:600px; }
+#mainTopWrap .mainKeyVisual .mainKeyVisual02 { background:url('/new_images/main/mainTopVisualM02.jpg') center top no-repeat; height:600px; }
+#mainTopWrap .mainKeyVisual .mainKeyVisual03 { background:url('/new_images/main/mainTopVisualM03.jpg') center top no-repeat; height:600px; }
+#mainTopWrap .mainKeyVisual .mainKeyVisual04 { background:url('/new_images/main/mainTopVisualM04.jpg') center top no-repeat; height:600px; }
+#mainTopWrap .mainKeyVisual .mainKeyVisual05 { background:url('/new_images/main/mainTopVisualM05.jpg') center top no-repeat; height:600px; }
+#mainTopWrap .mainKeyVisual .mainKeyVisual06 { background:url('/new_images/main/mainTopVisualM06.jpg') center top no-repeat; height:600px; }
+
+#mainTopWrap .swiper-container {height: 600px;}
+#mainTopWrap .swiper-container .swiper-wrapper {height: 600px;}
+#mainTopWrap .swiper-container .swiper-wrapper .swiper-slide {background-size: cover;}
+
+#container { position:relative; padding:112px 0 0 0; }
+#mainContentWrap .mainContentArea { position:relative; width:100%; margin:555px 0 0 0; background:#fff; padding:45px 0 0 0; border-top-left-radius:50px; border-top-right-radius:50px; }
+#mainContentWrap .mainContentArea:after { position:absolute; right:0; top:45px; bottom:0; width:30px; height:1400px; z-index:999; content:''; background:url('/new_images/main/bgContentRightM.png') repeat-y; }
+#mainContentWrap .mainContentArea .mainHeadingTitle { font-size:38px; color:#4e4f51; font-weight:500; text-align:left; letter-spacing:-1px; margin:35px 0 30px; }
+#mainContentWrap .mainContentArea .contentsTitle { font-size:18px; color:#292a2d; }
+#mainContentWrap .mainContentArea .contentsText { font-size:14px; color:#727476; line-height:22px; }
+#mainContentWrap .mainContentArea .learningCard { padding:0 0 0 10px; }
+#mainContentWrap .mainContentArea .learningCard .swiper-container {height: 200px;}
+#mainContentWrap .mainContentArea .learningCard .mainHeadingTitle { margin:0 0 15px 20px; }
+#mainContentWrap .mainContentArea .learningCard ul { display:flex; justify-content:flex-start; overflow-x: auto; padding-bottom: 20px; overflow-scrolling: touch; -webkit-overflow-scrolling: touch;}
+#mainContentWrap .mainContentArea .learningCard ul > li { width:116px; height:115px; text-align:center; background:url('/new_images/main/learningCardSet2.png') no-repeat; background-size: auto 64px; }
+#mainContentWrap .mainContentArea .learningCard ul > li.learningCard01 { background-position:0 0; }
+#mainContentWrap .mainContentArea .learningCard ul > li.learningCard02 { background-position:-124px 0; }
+#mainContentWrap .mainContentArea .learningCard ul > li.learningCard03 { background-position:-248px 0; }
+#mainContentWrap .mainContentArea .learningCard ul > li.learningCard04 { background-position:-372px 0; }
+#mainContentWrap .mainContentArea .learningCard ul > li.learningCard05 { background-position:-496px 0; }
+#mainContentWrap .mainContentArea .learningCard ul > li.learningCard06 { background-position:-620px 0; }
+#mainContentWrap .mainContentArea .learningCard ul > li.learningCard07 a { background: url('/new_images/main/lecture-apply.png') no-repeat center -15px; background-size: 130px 90px;}
+#mainContentWrap .mainContentArea .learningCard .contentsTitle {display: block; padding:80px 0 0 0; font-size:26px; color:#727476; box-sizing: border-box; letter-spacing: -0.079em;}
+#mainContentWrap .mainContentArea .absentArea { padding:0 30px; }
+#mainContentWrap .mainContentArea .absentArea > ul { display:flex; background:#416fdf; width:100%; height:120px; border-radius:10px; }
+#mainContentWrap .mainContentArea .absentArea > ul > li { position:relative; flex:1; padding-left:115px; font-size:30px; line-height:120px; color:#fff; }
+#mainContentWrap .mainContentArea .absentArea > ul > li:before { position:absolute; top:28px; left:30px; width:64px; height:64px; content:''; background:url('/new_images/main/icoAbsentSet.png') 0 0 no-repeat;}
+#mainContentWrap .mainContentArea .absentArea > ul > li.beacon:before { background-position:-64px 0;}
+#mainContentWrap .mainContentArea .absentArea > ul > li.st:before { background-position:-128px 0;}
+#mainContentWrap .mainContentArea .absentArea > ul > li.qr:after { position:absolute; top:30px; right:0; width:2px; height:60px; content:''; background:#8ba7eb; }
+#mainContentWrap .mainContentArea .absentArea > ul > li.beacon:after { position:absolute; top:30px; right:0; width:2px; height:60px; content:''; background:#8ba7eb; }
+#mainContentWrap .mainContentArea .noticeArea { background:#f2f4f6; height:64px; padding:0 30px; margin:40px 0; }
+#mainContentWrap .mainContentArea .noticeArea > ul > li { background:#f2f4f6; font-size:28px; color:#4e4f51;; line-height:64px; }
+#mainContentWrap .mainContentArea .noticeArea > ul > li .noticePart { display:inline-block; margin:0 20px 0 0; text-align:center; border:2px solid #e2e2e4; background: #fff; color:#193294; font-size:24px; width:80px; height:40px; line-height:38px;  }
+#mainContentWrap .mainContentArea .disitalTech { padding:0 30px 0 30px; }
+#mainContentWrap .mainContentArea .disitalTech #disitalTech {padding-bottom: 70px;}
+#mainContentWrap .mainContentArea .disitalTech ul { display:flex; justify-content:flex-start; }
+/*#mainContentWrap .mainContentArea .disitalTech ul > li .contentImg { width:300px; height:300px; }*/
+#mainContentWrap .mainContentArea .disitalTech ul > li .contentsTitle { padding:20px 0 0 0; font-size:30px; text-align:left; color:#292a2d; }
+
+#mainContentWrap .mainContentArea .disitalTech_a { padding:0 30px 0 30px; }
+/* #mainContentWrap .mainContentArea .disitalTech_a #disitalTech_a {padding-bottom: 70px;} */
+/* #mainContentWrap .mainContentArea .disitalTech_a ul { display:flex; justify-content:flex-start; } */
+/*#mainContentWrap .mainContentArea .disitalTech_a ul > li .contentImg { width:300px; height:300px; }*/
+/* #mainContentWrap .mainContentArea .disitalTech_a ul > li .contentsTitle { padding:20px 0 0 0; font-size:30px; text-align:left; color:#292a2d; } */
+
+
+
+/* 범부처 디지털 신기술 제도 안내 1201 */
+#mainContentWrap .mainContentArea .allDisitalTech { padding:0 30px 0 30px; }
+#mainContentWrap .mainContentArea .allDisitalTech #allDisitalTech {padding-bottom: 80px;}
+#mainContentWrap .mainContentArea .allDisitalTech ul { display:flex; justify-content:flex-start; }
+#mainContentWrap .mainContentArea .allDisitalTech ul > li .contentsTitle { padding:0 0 0 0; font-size:30px; text-align:left; color:#292a2d; }
+#mainContentWrap .mainContentArea #allDisitalTech > ul { display:flex; justify-content:space-between; }
+#mainContentWrap .mainContentArea #allDisitalTech > ul > li { position:relative; margin:0 0 0 20px; }
+#mainContentWrap .mainContentArea #allDisitalTech > ul > li:first-child { margin:0; }
+#mainContentWrap .mainContentArea #allDisitalTech > ul > li .contentsTitle {  !margin:0 0 0 0px; position:absolute; bottom:0; display:block; width:100%; text-align:center; background:#fff; opacity:0.6; color:#333; font-size:20px; height:25px; line-height:25px;}
+#mainContentWrap .mainContentArea #allDisitalTech > ul > li .contentsTxt {position:absolute; bottom:0; display:block; width:100%; text-align:center; color:#4e4f51; font-size:30px; height:40px; line-height:40px; padding-top:50px;}
+
+#mainContentWrap .mainContentArea .trainingCourse { padding:0 0 0 30px; }
+#mainContentWrap .mainContentArea .trainingCourse ul { display:flex; justify-content:flex-start; }
+#mainContentWrap .mainContentArea .trainingCourse ul > li .contentImg { width:188px; height:188px; text-align:center;}
+#mainContentWrap .mainContentArea .trainingCourse ul > li .contentsTitle { width:100%; text-align:center; color:#292a2d; font-size:30px; margin:20px 0 0 0; }
+#mainContentWrap .mainContentArea .eventArea1 { background:#f6f7f8; padding:23px 0 17px; margin:70px 0 0 0; }
+#mainContentWrap .mainContentArea .eventArea { background:#f6f7f8; padding:23px 0 17px; margin:70px 0 0 0; }
+#mainContentWrap .mainContentArea .recentBoard { padding:0 30px /*140px*/ 30px; }
+#mainContentWrap .mainContentArea .recentBoard .recentList > li { padding:0 20px; border-bottom:1px solid #f2f4f6; font-size:28px; line-height:66px; color:#727476; }
+#mainContentWrap .mainContentArea .recentBoard .recentList > li:last-child { border:none; }
+
+#mainContentWrap .mainContentArea .trinBtnArea { padding:0 30px; }
+#mainContentWrap .mainContentArea .trinBtnArea > ul { display:flex; background:#416fdf; width:100%; height:120px; border-radius:10px; }
+#mainContentWrap .mainContentArea .trinBtnArea > ul > li { position:relative; flex:1; text-align:center; font-size:30px; line-height:120px; color:#fff; }
+#mainContentWrap .mainContentArea .trinBtnArea > ul > li.tgcrList:after { position:absolute; top:30px; right:0; width:2px; height:60px; content:''; background:#8ba7eb; }
+
+
+/* ==============================
+* slider pagenation
+* ============================== */
+@media all and (min-width: 1440px) {
+    #mainTopWrap .movieControlArea {margin-left: -760px;}
+}
+#mainKeyVisualPagination.swiper-pagination { display:block; width:240px; bottom:80px; }
+#mainKeyVisualPagination.swiper-pagination .swiper-pagination-bullet { width:12px; height:12px; border-radius:12px; background:#fff; opacity:.5; margin-left:10px; }
+#mainKeyVisualPagination.swiper-pagination .swiper-pagination-bullet-active { background:#fff; width:51px; height:12px; border-radius:12px; opacity:1; }
+
+.mainContentArea .swiper-pagination .swiper-pagination-bullet { width:8px; height:8px; border:1px solid #434e65; border-radius:8px; background:#fff; opacity:1; }
+.mainContentArea .swiper-pagination .swiper-pagination-bullet-active { width:34px; height:8px; border-radius:8px; background:#434e65; }
+/* #mainTopWrap .mainKeyVisual .swiper-container .swiper-button-play.pause {background: url('/new_images/common/movieControlSet.png') no-repeat left top; background-size: auto 60px;filter: invert(0);} */
+#mainTopWrap .mainKeyVisual .swiper-container .swiper-button-play.pause {background: url('/new_images/common/movieControlSet.png') no-repeat left top; background-size: auto 36px;filter: invert(0);}
+/* #mainTopWrap .mainKeyVisual .swiper-container .swiper-button-play.play {background: url('/new_images/common/movieControlSet.png') no-repeat -60px top; background-size: auto 60px;filter: invert(0);} */
+#mainTopWrap .mainKeyVisual .swiper-container .swiper-button-play.play {background: url('/new_images/common/movieControlSet.png') no-repeat -36px top; background-size: auto 36px;filter: invert(0);}
+.eventArea .swiper-pagination { bottom:12px; }
+.eventArea .swiper-pagination1 { bottom:12px; }
+
+.swiper-wrapper .swiper-slide img {max-width: 100%;}
+.swiper-button-play {width: 36px; height: 36px; font-size: 0;}
+
+#mainContentWrap .swiper-button-play {width: 30px; height: 30px; font-size: 0;}
+#mainContentWrap .swiper-button-play.pause {background: url('/new_images/common/movieControlSet2.png') no-repeat left top; background-size: auto 30px;}
+#mainContentWrap .swiper-button-play.play {background: url('/new_images/common/movieControlSet2.png') no-repeat -30px top; background-size: auto 30px;}
+
+.thumbnailWrap div .swiper-button-play.pause {background: url('/new_images/common/movieControlSet2.png') no-repeat left top; background-size: auto 30px;}
+.thumbnailWrap div .swiper-button-play.play {background: url('/new_images/common/movieControlSet2.png') no-repeat -30px top; background-size: auto 30px;}
+
+/* 210615 메인페이지 디지털훈련과정 수정 부분 시작 */
+/* K-Digital Training */
+#disitalTech .KDigitalCredit { width:1140px; height:200px;}
+#disitalTech .KDigitalCredit > ul { display:flex; justify-content:space-between; }
+#disitalTech .KDigitalCredit > ul > li { position:relative; margin:0 0 0 10px; }
+#disitalTech .KDigitalCredit > ul > li:first-child { margin:0; } 
+#disitalTech .KDigitalCredit > ul > li .contentsTitleB { position:absolute; bottom:0; display:block; width:100%; text-align:center; background:#2d3549; opacity:0.8; color:#fff; font-size:18px; text-shadow:1px 1px 1px #000; height:25px; line-height:25px; }
+#disitalTech .KDigitalCredit > ul > li .contentsTitleNB { position:absolute; bottom:0; display:block; width:100%; text-align:center; color:#fff; opacity:0.8; font-size:18px; text-shadow:1px 1px 1px #000; height:50px; line-height:25px;}
+#disitalTech .KDigitalCredit > ul > li .contentsTxt {position:absolute; bottom:0; display:block; width:100%; text-align:center; color:#4e4f51; font-size:14px; height:40px; line-height:40px; padding-top:50px;}
+
+
+/* K-Digital Training 210615 */
+#mainHeadingSubTitle { font-size:22px; color:#5c5c5e; font-weight:400; text-align:left; margin:0 0 20px; }
