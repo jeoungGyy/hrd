@@ -12,7 +12,7 @@ html, body { font-size: 26px; }
 #headerWrap .headerBtn { position:fixed; width:100%; height:112px; z-index:101; }
 #headerWrap .headerLogo { position:absolute; top:30px; left:30px; z-index:100;}
 #headerWrap .headerLogo a { display:block; background:url('../new_images/common/headerLogo03_mo.png') no-repeat; width:63px; height:52px; color: transparent; line-height:0; }
-#headerWrap .headerBtn .btn { position:absolute; z-index:102; top:32px; background:url('/new_images/common/icoHeader.png') no-repeat; width:44px; height:44px; color: transparent; line-height:0; }
+#headerWrap .headerBtn .btn { position:absolute; z-index:102; top:32px; background:url('../new_images/common/icoHeader.png') no-repeat; width:44px; height:44px; color: transparent; line-height:0; }
 #headerWrap .headerBtn .backBtn { left:30px; background-position: 0 0;}
 #headerWrap .headerBtn .searhBtn { right:135px; background-position:-44px 0;}
 /* #headerWrap .headerBtn .totalMenuBtn { right:30px; background-position:-88px 0;} */
