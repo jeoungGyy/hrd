@@ -72,7 +72,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="backCard" style="display: none;">
+                                <div class="backCard">
                                     <div class="header">
                                         <p class="font36">배지상세정보</p>
                                         <button type="button" class="click" title="화면 전환"><i></i></button>
@@ -159,6 +159,14 @@
                 <style>
                     body { background-color: #f6f6f6;}
                 </style>
+                <script>
+                    $('.frontCard .click').on('click', function() {
+                        $('.card').addClass('preserve');
+                    });
+                    $('.backCard .click').on('click', function() {
+                        $('.card').removeClass('preserve');
+                    });
+                </script>
             </div>
         </div>
 

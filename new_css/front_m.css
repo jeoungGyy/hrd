@@ -896,8 +896,8 @@ table.view.track-view tr td a {font-size: 24px !important;}
 .wallet .badge .badgeGroup.checkGroup .list.shortList li a.check::after { border: none;}
 .wallet .badge .badgeGroup.checkGroup .list.shortList li .img { left: 70px; top: 48px; transform: initial;}
 
-
-.wallet .card { margin-top: 60px; padding: 40px 40px 46px; height: 592px; background-color: #fff; border-radius: 20px; box-shadow: 0 0 30px rgba(102, 102, 102, 0.2);}
+.wallet { perspective: 2500px;}
+.wallet .card { position: relative; margin-top: 60px;  height: 592px; transition: .4s; transform-style: preserve-3d;}
 .wallet .card .header { display: flex; justify-content: space-between; align-items: center;}
 .wallet .card .header .p1 { display: flex; align-items: center;}
 .wallet .card .header .p1 i { width: 32px; height: 27px; background: url(../new_images/wallet/ico_card_on1.png) no-repeat;}
@@ -911,6 +911,9 @@ table.view.track-view tr td a {font-size: 24px !important;}
 .wallet .card .frontCard .blindR .round img { width: 100%; height: 100%;}
 .wallet .card .frontCard .blindR .name { margin-top: 20px; font-size: 36px; font-weight: 500; color: #292a2d;}
 .wallet .card .frontCard .blindR .phone { margin-top: 10px; color: #292a2d;}
+.wallet .card .frontCard,
+.wallet .card .backCard { position: absolute; width: 100%; height: 100%; padding: 40px 40px 46px; background-color: #fff; border-radius: 20px; box-shadow: 0 0 30px rgba(102, 102, 102, 0.2); backface-visibility: hidden;}
+.wallet .card .backCard { transform: rotateY(180deg);}
 .wallet .card .list li { display: flex; justify-content: space-between; align-items: center;}
 .wallet .card .list li ~ li { margin-top: 20px;}
 .wallet .card .list li .front { display: block; font-size: 24px; color: #292a2d;}
@@ -932,7 +935,8 @@ table.view.track-view tr td a {font-size: 24px !important;}
 .wallet .card .processName { margin-top: 40px; font-size: 32px; color: #292a2d;}
 .wallet .card .overflowY { margin-right: -30px; padding-right: 30px;}
 .wallet .card.long { height: 694px;}
-.wallet .card.ozGroup { width: 460px; min-height: 570px; margin: 0 auto;}
+.wallet .card.ozGroup { width: 460px; min-height: 570px; margin: 0 auto; padding: 40px 40px 46px; background-color: #fff; border-radius: 20px; box-shadow: 0 0 30px rgba(102, 102, 102, 0.2);}
+.wallet .card.preserve { transform: rotateY(180deg);}
 
 .wallet .issue { padding-top: 250px; text-align: center;}
 .wallet .issue p { margin-top: 40px; font-size: 28px; font-weight: 500; color: #292a2d; line-height: 40px;}

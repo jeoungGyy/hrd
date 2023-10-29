@@ -75,7 +75,7 @@
                                         <p><span>서울지방고용노동청 OO(지)청장</span><img src="../new_images/wallet/img_card_official.png" alt="서울지방노동청장 직인"></p>
                                     </div>
                                 </div>
-                                <div class="backCard" style="display: none;">
+                                <div class="backCard">
                                     <div class="header">
                                         <p class="font36">국민내일배움카드</p>
                                         <button type="button" class="click" title="화면 전환"><i></i></button>
@@ -129,6 +129,14 @@
                 <style>
                     body { background-color: #f6f6f6;}
                 </style>
+                <script>
+                    $('.frontCard .click').on('click', function() {
+                        $('.card').addClass('preserve');
+                    });
+                    $('.backCard .click').on('click', function() {
+                        $('.card').removeClass('preserve');
+                    });
+                </script>
             </div>
         </div>
 

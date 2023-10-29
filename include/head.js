@@ -7,6 +7,7 @@ str += '<link href="../new_css/pro.css" rel="stylesheet">';
 str += '<link href="../new_css/layout_m.css?ver=1" rel="stylesheet">';
 str += '<link href="../new_css/contents_m.css?ver=21" rel="stylesheet">';
 str += '<link href="../new_css/main_m.css?ver=0" rel="stylesheet">';
+str += '<script type="text/javascript" src="../js/lib/jquery-1.9.0.js?ver=0"></script>';
 
 
 document.write(str);
