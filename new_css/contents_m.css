@@ -16,7 +16,7 @@
 #subTopWrap .location > ul > li { display: inline-block; position:relative; font-size:24px; line-height:78px; padding:0 24px 0 14px; text-align:center; letter-spacing: -0.079em;}
 #subTopWrap .location > ul > li a { color:#575757; }
 #subTopWrap .location > ul > li.on a { color:#292a2d; }
-#subTopWrap .location > ul > li:after { position:absolute; top:30px; right:0; content:''; width:9px; height:16px; background-image:url('/new_images/common/arrowLocation.png'); background-repeat:no-repeat; background-size: 9px 16px; }
+#subTopWrap .location > ul > li:after { position:absolute; top:30px; right:0; content:''; width:9px; height:16px; background-image:url('../new_images/common/arrowLocation.png'); background-repeat:no-repeat; background-size: 9px 16px; }
 #subTopWrap .location > ul > li:last-child { font-weight:500; background:none; }
 #subTopWrap .location > ul > li:last-child:after { background:none; }
 #contentWrap #subContentWrap { width:100%; padding:0; }

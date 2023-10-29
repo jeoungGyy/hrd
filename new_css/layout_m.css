@@ -11,13 +11,13 @@ html, body { font-size: 26px; }
 #headerWrap .header { display:none; }
 #headerWrap .headerBtn { position:fixed; width:100%; height:112px; z-index:101; }
 #headerWrap .headerLogo { position:absolute; top:30px; left:30px; z-index:100;}
-#headerWrap .headerLogo a { display:block; background:url('/new_images/common/headerLogo03_mo.png') no-repeat; width:63px; height:52px; color: transparent; line-height:0; }
+#headerWrap .headerLogo a { display:block; background:url('../new_images/common/headerLogo03_mo.png') no-repeat; width:63px; height:52px; color: transparent; line-height:0; }
 #headerWrap .headerBtn .btn { position:absolute; z-index:102; top:32px; background:url('/new_images/common/icoHeader.png') no-repeat; width:44px; height:44px; color: transparent; line-height:0; }
 #headerWrap .headerBtn .backBtn { left:30px; background-position: 0 0;}
 #headerWrap .headerBtn .searhBtn { right:135px; background-position:-44px 0;}
 /* #headerWrap .headerBtn .totalMenuBtn { right:30px; background-position:-88px 0;} */
 button#totalMenuBtn1.totalMenuBtn{ right: 12px; position: absolute; top: 30px; font-size: 26px;  color: #4e4f51; padding: 0 0 0 55px;}
-button#totalMenuBtn1.totalMenuBtn::before{ position: absolute; top: 3px; left: 0; content: ''; background: url(/new_images/common/icoHeader.png) no-repeat; width: 40px; height: 40px; background-position: center;}
+button#totalMenuBtn1.totalMenuBtn::before{ position: absolute; top: 3px; left: 0; content: ''; background: url(../new_images/common/icoHeader.png) no-repeat; width: 40px; height: 40px; background-position: center;}
 #headerWrap .headerBtn .closeBtn { right:30px; background-position:-132px 0;}
 
 /* ==============================
@@ -102,7 +102,7 @@ div.kdg-gnb-bg{padding:0.8rem; background:blue; text-align:center; color:#b24df1
 .floatingMenu li { width:25%;}
 .floatingMenu li a { position:relative; box-sizing:border-box; display:block; height:100px; padding-top:64px; font-size: 22px; line-height:25px; text-align: center; color:#4e4f51; }
 .floatingMenu li.on a { color:#4171df; }
-.floatingMenu span:after { content:''; display:block; position:absolute; top:14px; left:calc(50% - 20px); width:40px; height:40px; background:url('/new_images/common/icoFloatingMenu.png'); }
+.floatingMenu span:after { content:''; display:block; position:absolute; top:14px; left:calc(50% - 20px); width:40px; height:40px; background:url('../new_images/common/icoFloatingMenu.png'); }
 .floatingMenu .home span:after { background-position: 0px 0; }
 .floatingMenu .search span:after { background-position: -40px 0; }
 .floatingMenu .search a {color: #A1560B;}
