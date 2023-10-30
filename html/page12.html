@@ -58,7 +58,7 @@
                                 <div class="badgeGroup checkGroup"> <!-- 편집 클릭 시 checkGroup 추가 -->
                                     <ul class="list lineTop">
                                         <li>
-                                            <a href="javascript:void(0);" role="button" class="check"> <!-- 체크 효과: 클래스 check 추가 -->
+                                            <a href="javascript:void(0);" role="button" class="check" title="배치 선택됨"> <!-- 체크 효과: 클래스 check 추가 -->
                                                 <span class="img"><img src="../new_images/wallet/img_badge1.png" alt=""></span>
                                                 <span class="name ellipsis">디지털AA과정</span>
                                                 <span class="date">2023.08.01</span>
@@ -98,58 +98,6 @@
                                                 <span class="name ellipsis">개인정보보호</span>
                                                 <span class="date">2009.10.05</span>
                                             </a>
-                                        </li>
-                                    </ul>
-
-
-                                    <ul class="list shortList lineTop"> <!-- 목록보기 시 shortList 클래스 추가 -->
-                                        <li>
-                                            <a href="javascript:void(0);" role="button" class="check"> <!-- 체크 효과: 클래스 check 추가 -->
-                                                <span class="img"><img src="../new_images/wallet/img_badge1.png" alt=""></span>
-                                                <span class="name ellipsis">디지털AA과정</span>
-                                                <span class="date">발급일: 2023.08.01</span>
-                                            </a>
-                                            <button type="button" class="deleteIco" title="배지 삭제"></button>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" role="button">
-                                                <span class="img"><img src="../new_images/wallet/img_badge2.png" alt=""></span>
-                                                <span class="name ellipsis">디지털AB과정</span>
-                                                <span class="date">발급일: 2013.05.13</span>
-                                            </a>
-                                            <button type="button" class="deleteIco" title="배지 삭제"></button>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" role="button">
-                                                <span class="img"><img src="../new_images/wallet/img_badge3.png" alt=""></span>
-                                                <span class="name ellipsis">개인정보보호개인정보보호개인정보보호</span>
-                                                <span class="date">발급일: 2009.10.05</span>
-                                            </a>
-                                            <button type="button" class="deleteIco" title="배지 삭제"></button>
-                                        </li>
-                                        <li class="blur">
-                                            <a href="javascript:void(0);" role="button">
-                                                <span class="img"><img src="../new_images/wallet/img_badge1.png" alt=""></span>
-                                                <span class="name ellipsis">디지털AA과정</span>
-                                                <span class="date">발급일: 2023.08.01</span>
-                                            </a>
-                                            <button type="button" class="deleteIco" title="배지 삭제"></button>
-                                        </li>
-                                        <li class="blur">
-                                            <a href="javascript:void(0);" role="button">
-                                                <span class="img"><img src="../new_images/wallet/img_badge2.png" alt=""></span>
-                                                <span class="name ellipsis">디지털AB과정</span>
-                                                <span class="date">발급일: 2013.05.13</span>
-                                            </a>
-                                            <button type="button" class="deleteIco" title="배지 삭제"></button>
-                                        </li>
-                                        <li class="blur">
-                                            <a href="javascript:void(0);" role="button">
-                                                <span class="img"><img src="../new_images/wallet/img_badge3.png" alt=""></span>
-                                                <span class="name ellipsis">개인정보보호</span>
-                                                <span class="date">발급일: 2009.10.05</span>
-                                            </a>
-                                            <button type="button" class="deleteIco" title="배지 삭제"></button>
                                         </li>
                                     </ul>
 
@@ -167,6 +115,16 @@
                             </div>
                         </div>
                         <!-- //디지털 배지 신규 추가 -->
+                        <script>
+                            /* 디자인 확인 용 */
+                            $('.badgeGroup .list a').on('click', function() {
+                                if($(this).hasClass('check')) {
+                                    $(this).removeClass('check').attr('title', '');;
+                                } else {
+                                    $(this).addClass('check').attr('title', '배치 선택됨');
+                                }
+                            });
+                        </script>
 
 
 

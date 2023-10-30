@@ -47,7 +47,10 @@
                             <div class="badgeSearch">
                                 <div class="fCho">
                                     <select title="발급일">
-                                        <option>전송일순</option>
+                                        <option>전송일</option>
+                                        <option>훈련과정명</option>
+                                        <option>발급기관</option>
+                                        <option>수신일</option>
                                     </select>
                                 </div>
                                 <div class="sBtns">
@@ -106,10 +109,10 @@
                                     <!-- //목록이 없을경우 -->
                                 </div>
 
-                                <div class="sotGroup checkGroup"> <!-- 편집 클릭 시 checkGroup 추가 -->
-                                    <ul class="sotList">
+                                <div class="sotGroup">
+                                    <ul class="sotList checkGroup"> <!-- 편집 클릭 시 checkGroup 추가 -->
                                         <li>
-                                            <a href="javascript:void(0);" role="button" class="check"> <!-- 체크 효과: 클래스 check 추가 -->
+                                            <a href="javascript:void(0);" role="button" class="check" title="선택됨"> <!-- 체크 효과: 클래스 check 추가 -->
                                                 <p class="title">공인노무사(발급일:2003.04.01)</p>
                                                 <p class="name">한국산업인력공단</p>
                                                 <span class="date">2023.07.21  13:30 도착 · PIN100384</span>
@@ -151,6 +154,16 @@
                             </div>
                         </div>
                         <!-- //디지털 배지 신규 추가 -->
+                        <script>
+                            /* 디자인 확인 용 */
+                            $('.sotGroup .sotList a').on('click', function() {
+                                if($(this).hasClass('check')) {
+                                    $(this).removeClass('check').attr('title', '');;
+                                } else {
+                                    $(this).addClass('check').attr('title', '선택됨');
+                                }
+                            });
+                        </script>
 
 
 

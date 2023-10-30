@@ -58,7 +58,7 @@
                                 <div class="sotGroup">
                                     <ul class="sotList checkGroup"> <!-- 편집 클릭 시 checkGroup 추가 -->
                                         <li>
-                                            <a href="javascript:void(0);" role="button" class="check"> <!-- 체크 효과: 클래스 check 추가 -->
+                                            <a href="javascript:void(0);" role="button" class="check" title="선택됨"> <!-- 체크 효과: 클래스 check 추가 -->
                                                 <p class="title">디지털AB과정(발급일:2023.02.16)</p>
                                                 <p class="name">서울고용훈련센터</p>
                                                 <span class="date">2023.06.01~2023.06.20</span>
@@ -98,6 +98,16 @@
                             </div>
                         </div>
                         <!-- //디지털 배지 신규 추가 -->
+                        <script>
+                            /* 디자인 확인 용 */
+                            $('.sotGroup .sotList a').on('click', function() {
+                                if($(this).hasClass('check')) {
+                                    $(this).removeClass('check').attr('title', '');;
+                                } else {
+                                    $(this).addClass('check').attr('title', '선택됨');
+                                }
+                            });
+                        </script>
 
 
 

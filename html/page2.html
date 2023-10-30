@@ -66,6 +66,16 @@
                             </div>
                         </div>
                         <!-- //디지털 배지 신규 추가 -->
+                        <script>
+                            /* 디자인 확인 용 */
+                            $('#all_select').on('click', function() {
+                                if($(this).is(':checked')) {
+                                    $('.btnSingle button').addClass('active');
+                                } else {
+                                    $('.btnSingle button').removeClass('active');
+                                }
+                            });
+                        </script>
 
 
 

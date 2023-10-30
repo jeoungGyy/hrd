@@ -351,7 +351,7 @@ input[type="text"].js_datepicker { box-sizing:border-box; width:220px; padding:0
 .ui_checkBox { display:inline-block; position:relative; padding-left:55px; text-align:left; line-height:40px; vertical-align:middle;}
 .ui_checkBox input { position:absolute; top:0; left:0; width:40px; height:40px; padding:0; margin:0; z-index:1; opacity:1; }
 .ui_checkBox label { font-size:26px; cursor:pointer; margin-right:70px; letter-spacing: -0.079em}
-.ui_checkBox label:after { content:''; display:block; position:absolute; top:0px; left:0; width:40px; height:40px; background:url('/new_images/common/checkboxSet.png') 0 0 no-repeat; background-size: 120px 40px; }
+.ui_checkBox label:after { content:''; display:block; position:absolute; top:0px; left:0; width:40px; height:40px; background:url('../new_images/common/checkboxSet.png') 0 0 no-repeat; background-size: 120px 40px; }
 .ui_checkBox input:checked + label:after { background-position:-40px 0; }
 .ui_checkBox input:disabled + label:after { background-position:0px 0; } 
 .ui_checkBox input:disabled + label.on:after { background-position:-80px 0; }

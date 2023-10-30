@@ -787,7 +787,7 @@ table.view.track-view tr td a {font-size: 24px !important;}
 
 .wallet .empt { padding: 150px 0 130px; text-align: center;}
 .wallet .empt p { margin-top: 38px; font-size: 28px; font-weight: 500; color: #292a2d;}
-.wallet .empt.bottomLine { border-bottom: 2px solid #e2e2e4;}
+.wallet .empt.bottomLine { border-top: 4px solid #727476; border-bottom: 2px solid #e2e2e4;}
 
 .wallet hr { margin: 0; padding: 0; border: none;}
 .wallet hr.height36 { height: 36px;}
@@ -801,7 +801,7 @@ table.view.track-view tr td a {font-size: 24px !important;}
 
 /* 버튼 */
 .wallet button { font-family: 'Noto Sans KR', sans-serif;}
-.wallet .btnSingle .button { display: flex; align-items: center; justify-content: center; width: 100%; height: 90px; font-size: 28px; color: #fff; background-color: #cdcdd1; border-radius: 10px;}
+.wallet .btnSingle .button { display: flex; align-items: center; justify-content: center; width: 100%; height: 90px; font-size: 28px; color: #fff; background-color: #cdcdd1; border-radius: 10px; transition: background-color 0.3s;}
 .wallet .btnSingle .button.active,
 .wallet .btnDouble .button.active { background-color: #2752ba;}
 .wallet .btnSingle .button.between { justify-content: space-between; padding: 0 40px;}
@@ -869,8 +869,8 @@ table.view.track-view tr td a {font-size: 24px !important;}
 .wallet .badge .badgeGroup .list { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px;}
 .wallet .badge .badgeGroup .list li { position: relative; width: calc(100% / 3 - 10px); text-align: center;}
 .wallet .badge .badgeGroup .list li.blur { opacity: 0.5;}
-.wallet .badge .badgeGroup .list li a { display: block; padding: 20px 0;}
-.wallet .badge .badgeGroup .list li a.check { border: 2px solid #4171df;}
+.wallet .badge .badgeGroup .list li a { display: block; padding: 20px 0; border: 2px solid transparent;}
+.wallet .badge .badgeGroup .list li a.check { border-color: #4171df;}
 .wallet .badge .badgeGroup .list li a.check::after { content: ''; position: absolute; left: 0; top: 0; z-index: 1; width: 40px; height: 40px; background: #4171df url(../new_images/wallet/icon_checkbox_checked.png) no-repeat;}
 .wallet .badge .badgeGroup .list .img { display: block;}
 .wallet .badge .badgeGroup .list .name { overflow:hidden;  display: block; margin-top: 20px; font-size: 28px; font-weight: 500; color: #292a2d; text-overflow:ellipsis; white-space:nowrap;}
@@ -891,9 +891,9 @@ table.view.track-view tr td a {font-size: 24px !important;}
 .wallet .badge .badgeGroup .list.shortList.full li a { padding-right: 0;}
 .wallet .badge .badgeGroup .list.lineTop { padding: 20px 0; border-top: 4px solid #727476;}
 .wallet .badge .badgeGroup .list.shortList.lineTop { padding-top: 0;}
-.wallet .badge .badgeGroup.checkGroup .list.shortList li a { padding: 50px 120px 50px 170px;}
+.wallet .badge .badgeGroup.checkGroup .list.shortList li a { padding: 50px 120px 50px 170px; border: none;}
 .wallet .badge .badgeGroup.checkGroup .list.shortList li a::after { content: ''; display: block; position: absolute; left: 0; top: 48px; width: 40px; height: 40px; border: 2px solid #cdcdd1;}
-.wallet .badge .badgeGroup.checkGroup .list.shortList li a.check::after { border: none;}
+.wallet .badge .badgeGroup.checkGroup .list.shortList li a.check::after { border-color: #4171df;}
 .wallet .badge .badgeGroup.checkGroup .list.shortList li .img { left: 70px; top: 48px; transform: initial;}
 
 .wallet { perspective: 2500px;}
@@ -942,8 +942,8 @@ table.view.track-view tr td a {font-size: 24px !important;}
 .wallet .issue p { margin-top: 40px; font-size: 28px; font-weight: 500; color: #292a2d; line-height: 40px;}
 .wallet .issue.no { padding-bottom: 200px;}
 
-.wallet .badgeSearch { display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px;}
-.wallet .badgeSearch select { padding-right: 40px; font-size: 24px; font-weight: 500; color: #4e4f51; border: none; background: url(../new_images/wallet/icon_badge_arrow2.png) no-repeat right 6px; appearance:none;}
+.wallet .badgeSearch { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;}
+.wallet .badgeSearch select { padding-right: 30px; font-size: 24px; font-weight: 500; color: #4e4f51; border: none; background: url(../new_images/wallet/icon_badge_arrow2.png) no-repeat right 6px; appearance:none;}
 .wallet .badgeSearch >div { display: flex; align-items: center;}
 .wallet .badgeSearch >div.txtBtns p { font-size: 24px; font-weight: 500;}
 .wallet .badgeSearch button { display: flex; align-items: center; justify-content: center; height: 48px;}
@@ -970,11 +970,11 @@ table.view.track-view tr td a {font-size: 24px !important;}
 .wallet .sot .sotList li .btnSingle { margin: -20px 0 50px;}
 .wallet .sot .sotList li .btnSingle .button { width: 144px; height: 70px; font-size: 24px;}
 .wallet .sot .sotList li.blur a { opacity: 0.5;}
-.wallet .sot .checkGroup .sotList li .sotDelete { display: block; position: absolute; right: 0; top: 60px; width: 23px; height: 23px; background: url(../new_images/wallet/icon_badge_delete.png) no-repeat;}
-.wallet .sot .checkGroup .sotList li a { padding: 50px 90px 50px 70px;}
-.wallet .sot .checkGroup .sotList li a::after { content: ''; display: block; position: absolute; left: 0; top: 50px; width: 40px; height: 40px; background: #2752ba url(../new_images/common/checkboxSet.png) no-repeat;}
-.wallet .sot .checkGroup .sotList li a.check::after { content: ''; background-position-x: -40px;}
-.wallet .sot .checkGroup .sotList li .btnSingle { padding-left: 70px;}
+.wallet .sot .checkGroup.sotList li .sotDelete { display: block; position: absolute; right: 0; top: 60px; width: 23px; height: 23px; background: url(../new_images/wallet/icon_badge_delete.png) no-repeat;}
+.wallet .sot .checkGroup.sotList li a { padding: 50px 90px 50px 70px;}
+.wallet .sot .checkGroup.sotList li a::after { content: ''; display: block; position: absolute; left: 0; top: 50px; width: 40px; height: 40px; background: #2752ba url(../new_images/common/checkboxSet.png) no-repeat;}
+.wallet .sot .checkGroup.sotList li a.check::after { content: ''; background-position-x: -40px;}
+.wallet .sot .checkGroup.sotList li .btnSingle { padding-left: 70px;}
 .wallet .sot .cancleGroup { padding: 40px 24px; background-color: #f7f7f7;}
 .wallet .sot .cancleGroup .title { display: flex; align-items: center;}
 .wallet .sot .cancleGroup .title i { display: block; width: 26px; height: 42px; background: url(../new_images/wallet/icon_cancle_mike.png) no-repeat;}
@@ -990,7 +990,7 @@ table.view.track-view tr td a {font-size: 24px !important;}
 #subContentWrap .subContArea .wallet .searchBox { padding: 50px 30px; border-bottom: none;}
 #subContentWrap .subContArea .wallet .searchBox > fieldset > dl > dd { position: relative;}
 #subContentWrap .subContArea .wallet .searchBox > fieldset > dl > dd input[type=text] { width: 100%;}
-#subContentWrap .subContArea .wallet .searchBox > fieldset > dl > dd .searchBtn { position: absolute; right: 0; top: 0; width: 70px; min-width: 70px; height: 70px; padding: 0; background-color: #2752ba;}
+#subContentWrap .subContArea .wallet .searchBox > fieldset > dl > dd .searchBtn { position: absolute; right: 0; top: 0; width: 70px; min-width: 70px; height: 70px; padding: 0; border: none; background-color: #2752ba;}
 #subContentWrap .subContArea .wallet .searchBox > fieldset > dl > dd .searchBtn i { display: block; width: 70px; height: 70px; background: url(../new_images/wallet/ico_search_plus.png) no-repeat;}
 #subContentWrap .subContArea .wallet .searchBox > fieldset > dl > dd .searching { position: absolute; left: 0; top: 70px; z-index: 10; width: 100%; padding: 22px; border: 1px solid #cdcdd1; border-top: none; background-color: #fff; box-shadow: 6px 0 10px rgba(102, 102, 102, 0.1);}
 #subContentWrap .subContArea .wallet .searchBox > fieldset > dl > dd .searching ul li button { display: block; width: 100%; padding: 13px 0; text-align: left;}
