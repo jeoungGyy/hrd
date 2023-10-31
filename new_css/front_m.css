@@ -797,19 +797,19 @@ table.view.track-view tr td a {font-size: 24px !important;}
 .wallet .overflowY::-webkit-scrollbar { width: 6px;}
 .wallet .overflowY::-webkit-scrollbar-thumb { background-color: #cdcdd1; border-radius: 6px;}
 
-.wallet .pointColor { color: #2752ba;}
+.wallet .pointColor { color: #4171df;}
 
 /* 버튼 */
 .wallet button { font-family: 'Noto Sans KR', sans-serif;}
 .wallet .btnSingle .button { display: flex; align-items: center; justify-content: center; width: 100%; height: 90px; font-size: 28px; color: #fff; background-color: #cdcdd1; border-radius: 10px; transition: background-color 0.3s;}
 .wallet .btnSingle .button.active,
-.wallet .btnDouble .button.active { background-color: #2752ba;}
+.wallet .btnDouble .button.active { background-color: #4171df;}
 .wallet .btnSingle .button.between { justify-content: space-between; padding: 0 40px;}
 .wallet .btnSingle .button .iconQR { width: 40px; height: 40px; background: url(../new_images/wallet/icon_card_qr.png) no-repeat;} 
 
 .wallet .btnDouble { display: flex; justify-content: space-between; gap: 16px;}
 .wallet .btnDouble .button { display: flex; align-items: center; justify-content: center; width: 50%; height: 90px; font-size: 28px; color: #fff; background-color: #cdcdd1; border-radius: 10px;}
-.wallet .btnDouble .line { color: #2752ba; border: 2px solid #2752ba; background-color: #fff;}
+.wallet .btnDouble .line { color: #4171df; border: 2px solid #4171df; background-color: #fff;}
 
 .wallet .shadow { margin: 0 -30px; padding: 30px; background-color: #fff; box-shadow: 0 -6px 20px rgba(102, 102, 102, 0.06);}
 
@@ -965,14 +965,14 @@ table.view.track-view tr td a {font-size: 24px !important;}
 .wallet .sot .sotList li a .title { font-size: 28px; font-weight: 500; color: #292a2d; line-height: 40px;}
 .wallet .sot .sotList li a .name { margin-top: 26px; font-size: 24px; font-weight: 500; color: #727476;}
 .wallet .sot .sotList li a .date { display: block; margin-top: 16px; font-size: 24px; font-weight: 400; color: #727476;}
-.wallet .sot .sotList li a .date.blue { color: #2752ba;}
+.wallet .sot .sotList li a .date.blue { color: #4171df;}
 .wallet .sot .sotList li .sotDelete { display: none;}
 .wallet .sot .sotList li .btnSingle { margin: -20px 0 50px;}
 .wallet .sot .sotList li .btnSingle .button { width: 144px; height: 70px; font-size: 24px;}
 .wallet .sot .sotList li.blur a { opacity: 0.5;}
 .wallet .sot .checkGroup.sotList li .sotDelete { display: block; position: absolute; right: 0; top: 60px; width: 23px; height: 23px; background: url(../new_images/wallet/icon_badge_delete.png) no-repeat;}
 .wallet .sot .checkGroup.sotList li a { padding: 50px 90px 50px 70px;}
-.wallet .sot .checkGroup.sotList li a::after { content: ''; display: block; position: absolute; left: 0; top: 50px; width: 40px; height: 40px; background: #2752ba url(../new_images/common/checkboxSet.png) no-repeat;}
+.wallet .sot .checkGroup.sotList li a::after { content: ''; display: block; position: absolute; left: 0; top: 50px; width: 40px; height: 40px; background: #4171df url(../new_images/common/checkboxSet.png) no-repeat;}
 .wallet .sot .checkGroup.sotList li a.check::after { content: ''; background-position-x: -40px;}
 .wallet .sot .checkGroup.sotList li .btnSingle { padding-left: 70px;}
 .wallet .sot .cancleGroup { padding: 40px 24px; background-color: #f7f7f7;}
@@ -983,14 +983,14 @@ table.view.track-view tr td a {font-size: 24px !important;}
 
 .wallet .use .useList { border-top: 4px solid #727476;}
 .wallet .use .useList li { padding-bottom: 46px; border-bottom: 2px solid #e2e2e4;}
-.wallet .use .useList li .mainDate { padding: 24px 20px; font-size: 24px; font-weight: 500; color: #2752ba; background-color: #f0f0f2;}
+.wallet .use .useList li .mainDate { padding: 24px 20px; font-size: 24px; font-weight: 500; color: #4171df; background-color: #f0f0f2;}
 .wallet .use .useList li .title { margin-top: 40px; padding: 0 20px; font-size: 28px; font-weight: 500; color: #292a2d; line-height: 40px;}
 .wallet .use .useList li .date { display: block; margin-top: 20px; padding: 0 20px; font-size: 24px; font-weight: 400; color: #727476;}
 
 #subContentWrap .subContArea .wallet .searchBox { padding: 50px 30px; border-bottom: none;}
 #subContentWrap .subContArea .wallet .searchBox > fieldset > dl > dd { position: relative;}
 #subContentWrap .subContArea .wallet .searchBox > fieldset > dl > dd input[type=text] { width: 100%;}
-#subContentWrap .subContArea .wallet .searchBox > fieldset > dl > dd .searchBtn { position: absolute; right: 0; top: 0; width: 70px; min-width: 70px; height: 70px; padding: 0; border: none; background-color: #2752ba;}
+#subContentWrap .subContArea .wallet .searchBox > fieldset > dl > dd .searchBtn { position: absolute; right: 0; top: 0; width: 70px; min-width: 70px; height: 70px; padding: 0; border: none; background-color: #4171df;}
 #subContentWrap .subContArea .wallet .searchBox > fieldset > dl > dd .searchBtn i { display: block; width: 70px; height: 70px; background: url(../new_images/wallet/ico_search_plus.png) no-repeat;}
 #subContentWrap .subContArea .wallet .searchBox > fieldset > dl > dd .searching { position: absolute; left: 0; top: 70px; z-index: 10; width: 100%; padding: 22px; border: 1px solid #cdcdd1; border-top: none; background-color: #fff; box-shadow: 6px 0 10px rgba(102, 102, 102, 0.1);}
 #subContentWrap .subContArea .wallet .searchBox > fieldset > dl > dd .searching ul li button { display: block; width: 100%; padding: 13px 0; text-align: left;}
