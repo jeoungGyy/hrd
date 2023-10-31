@@ -807,6 +807,10 @@ table.view.track-view tr td a {font-size: 24px !important;}
 .wallet .btnSingle .button.between { justify-content: space-between; padding: 0 40px;}
 .wallet .btnSingle .button .iconQR { width: 40px; height: 40px; background: url(../new_images/wallet/icon_card_qr.png) no-repeat;} 
 
+.wallet.stickybutton { padding-bottom: 100px;}
+.wallet.stickybutton .btnSingle,
+.wallet.stickybutton .btnDouble { position: fixed; left: 0; right: 0; bottom: 100px; padding: 20px; background-color: #fff; box-shadow: 0 -6px 20px rgba(102, 102, 102, 0.06);}
+
 .wallet .btnDouble { display: flex; justify-content: space-between; gap: 16px;}
 .wallet .btnDouble .button { display: flex; align-items: center; justify-content: center; width: 50%; height: 90px; font-size: 28px; color: #fff; background-color: #cdcdd1; border-radius: 10px;}
 .wallet .btnDouble .line { color: #4171df; border: 2px solid #4171df; background-color: #fff;}
@@ -896,7 +900,7 @@ table.view.track-view tr td a {font-size: 24px !important;}
 .wallet .badge .badgeGroup.checkGroup .list.shortList li a.check::after { border-color: #4171df;}
 .wallet .badge .badgeGroup.checkGroup .list.shortList li .img { left: 70px; top: 48px; transform: initial;}
 
-.wallet { perspective: 2500px;}
+.wallet .cardWrap { perspective: 2500px;}
 .wallet .card { position: relative; margin-top: 60px;  height: 592px; transition: .4s; transform-style: preserve-3d;}
 .wallet .card .header { display: flex; justify-content: space-between; align-items: center;}
 .wallet .card .header .p1 { display: flex; align-items: center;}
