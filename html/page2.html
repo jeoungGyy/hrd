@@ -82,8 +82,10 @@
                                 var checked = $(".checkMid input[name=select]:checked").length;
                                 if(totalArr != checked){
                                     $("#all_select").prop("checked", false);
+                                    $('.btnSingle button').removeClass('active');
                                 }else{
                                     $("#all_select").prop("checked", true);
+                                    $('.btnSingle button').addClass('active');
                                 }
                             });
                         </script>
