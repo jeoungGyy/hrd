@@ -46,17 +46,17 @@
                             <div class="checkGroup mt30">
                                 <div class="checkTop">
                                     <div class="ui_checkBox">
-                                        <input type="checkbox" id="all_select" name="all_select" class="tk_btn_">
+                                        <input type="checkbox" id="all_select" name="all_select">
                                         <label for="all_select">전체선택</label>
                                     </div>
                                 </div>
                                 <div class="checkMid">
                                     <div class="ui_checkBox">
-                                        <input type="checkbox" id="select1" name="select" class="tk_btn_">
+                                        <input type="checkbox" id="select1" name="select">
                                         <label for="select1">전자증명서비스 약관 통합동의</label>
                                     </div>
                                     <div class="ui_checkBox">
-                                        <input type="checkbox" id="select2" name="select" class="tk_btn_">
+                                        <input type="checkbox" id="select2" name="select">
                                         <label for="select2">개인정보 수집 및 이용동의</label>
                                     </div>
                                 </div>
@@ -71,8 +71,19 @@
                             $('#all_select').on('click', function() {
                                 if($(this).is(':checked')) {
                                     $('.btnSingle button').addClass('active');
+                                    $(".checkMid input[name=select]").prop("checked", true);
                                 } else {
                                     $('.btnSingle button').removeClass('active');
+                                    $(".checkMid input[name=select]").prop("checked", false);
+                                }
+                            });
+                            $(".checkMid input[name=select]").on('click', function() {
+                                var totalArr = $(".checkMid input[name=select]").length;
+                                var checked = $(".checkMid input[name=select]:checked").length;
+                                if(totalArr != checked){
+                                    $("#all_select").prop("checked", false);
+                                }else{
+                                    $("#all_select").prop("checked", true);
                                 }
                             });
                         </script>
