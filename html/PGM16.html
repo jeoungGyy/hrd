@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>페이지21</title>
+    <title>PGM16</title>
     <script src="../include/head.js"></script> <!-- include: 공통 헤드 -->
 </head>
 <body style="zoom: 1;">
@@ -44,31 +44,20 @@
                         
                         <!-- 디지털 배지 신규 추가 -->
                         <div class="wallet stickybutton">
-                            <div class="searchBox">
-                                <fieldset>
-                                    <legend>기간명 검색</legend>
-                                    <dl>
-                                        <dt><label for="searchKey">기간명 검색</label></dt>
-                                        <dd>
-                                            <input type="text" value="" placeholder="기관명을 입력해주세요." title="기관명 검색" name="searchWord" id="searchWord">
-                                            <button type="button" class="searchBtn" id="searchBtn" title="검색"><i></i></button>
-
-                                            <div class="searching" style="display: none;">
-                                                <ul class="overflowY" style="max-height: 240px;">
-                                                    <li><button type="button"><span class="pointColor">한</span><span class="pointColor">국</span>산업인력공단</button></li>
-                                                    <li><button type="button"><span class="pointColor">한</span><span class="pointColor">국</span>산업인력공단2</button></li>
-                                                    <li><button type="button"><span class="pointColor">한</span><span class="pointColor">국</span>산업인력공단3</button></li>
-                                                    <li><button type="button"><span class="pointColor">한</span><span class="pointColor">국</span>산업인력공단4</button></li>
-                                                    <li><button type="button"><span class="pointColor">한</span><span class="pointColor">국</span>산업인력공단5</button></li>
-                                                    <li><button type="button"><span class="pointColor">한</span><span class="pointColor">국</span>산업인력공단6</button></li>
-                                                </ul>
-                                            </div>
-                                        </dd>                                  
-                                    </dl> 
-                                </fieldset>
+                            <div class="badgeSearch">
+                                <div class="fCho">
+                                    <select title="발급일">
+                                        <option>발급일</option>
+                                        <option>과정명</option>
+                                        <option>발급기관명​</option>
+                                    </select>
+                                </div>
+                                <div class="sBtns">
+                                    <button type="button" class="edit"><span>편집</span></button>
+                                </div>
                             </div>
 
-                            <div class="sot mt50">
+                            <div class="sot">
                                 <div class="sotGroup">
                                     <ul class="sotList"> <!-- 목록보기 시 shortList 클래스 추가 -->
                                         <li>
@@ -85,29 +74,32 @@
                                                 <span class="date">2023.02.01~2023.02.15</span>
                                             </a>
                                         </li>
-                                        <li class="blur">
+                                        <li class="getCheck">
                                             <a href="javascript:void(0);" role="button">
                                                 <p class="title">디지털AB과정(발급일:2023.02.16)</p>
                                                 <p class="name">서울고용훈련센터</p>
                                                 <span class="date">2023.06.01~2023.06.20</span>
                                             </a>
+                                            <button type="button" class="bget">발급받기</button>
                                         </li>
-                                        <li class="blur">
+                                        <li class="getCheck">
                                             <a href="javascript:void(0);" role="button">
                                                 <p class="title">유압교육 초급훈련 유압교육 초급훈련 (발급일:2023.06.21)</p>
                                                 <p class="name">서울고용훈련센터</p>
                                                 <span class="date">2023.02.01~2023.02.15</span>
                                             </a>
+                                            <button type="button" class="bget">발급받기</button>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
 
-                            <div class="btnSingle mt80">
-                                <button type="button" class="button active">보내기</button>
+                            <div class="btnSingle mt50">
+                                <button type="button" class="button active">일괄발급</button>
                             </div>
                         </div>
                         <!-- //디지털 배지 신규 추가 -->
+
 
 
                     </div>

@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>페이지20</title>
+    <title>PGM09</title>
     <script src="../include/head.js"></script> <!-- include: 공통 헤드 -->
 </head>
 <body style="zoom: 1;">
@@ -15,11 +15,12 @@
 
 
 
+
         <!-- 메인 컨텐츠영역 -->
         <div id="contentWrap">
             <div id="subTopWrap">
                 <div class="subTopArea">
-                    <h2 class="subTopTilte">전자문서지갑</h2>
+                    <h2 class="subTopTilte">국민내일배움카드</h2>
                     <p class="subTopText"></p>
                 </div>
                 <div class="location">
@@ -27,7 +28,7 @@
                     <ul id="locHref">
                         <li style="padding:0 14px 0 14px;"><a href="javascript:void(0);">나의 정보(개인)</a></li>
                         <li style="padding:0 14px 0 14px;"><a href="javascript:void(0);">나의 전자지갑</a></li>
-                        <li style="padding:0 14px 0 14px;"><a href="javascript:void(0);">직업훈련확인원</a></li>
+                        <li style="padding:0 14px 0 14px;"><a href="javascript:void(0);">국민내일배움카드</a></li>
                     </ul>
                 </div>
             </div>
@@ -38,16 +39,35 @@
                         
                         
                         <!-- 디지털 배지 신규 추가 -->
-                        <div class="wallet stickybutton">
-                            <div class="card ozGroup mt60">
-                                <div class="imgOZ">
-                                    <img src="../new_images/wallet/img_card_oz.png" alt="OZ정보">
+                        <div class="wallet">
+                            <!-- 발급 전 -->
+                            <div class="issue">
+                                <div class="fixedCenter">
+                                    <div>
+                                        <img src="../new_images/wallet/img_card_issue.png" alt="">
+                                    </div>
+                                    <p>
+                                        발급 가능한 내일배움카드 확인서가 있습니다.<br>
+                                        아래 버튼을 누르시면 확인서가 발급됩니다.
+                                    </p>
+                                </div>
+
+                                <div class="btnSingle singelFixed">
+                                    <button type="button" class="button active">확인서 발급하기</button>
                                 </div>
                             </div>
-                            
-                            <div class="btnSingle mt60">
-                                <button type="button" class="button active">발급</button>
+                            <!-- //발급 전 -->
+
+                            <!-- 조회 안됨 -->
+                            <div class="issue" style="display: none;">
+                                <div class="fixedCenter">
+                                    <div>
+                                        <img src="../new_images/wallet/img_card_noissue.png" alt="">
+                                    </div>
+                                    <p>발급 가능한 내일배움카드 확인서가 없습니다.</p>
+                                </div>
                             </div>
+                            <!-- //조회 안됨 -->
                         </div>
                         <!-- //디지털 배지 신규 추가 -->
 

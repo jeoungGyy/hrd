@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>페이지6</title>
+    <title>PGM12</title>
     <script src="../include/head.js"></script> <!-- include: 공통 헤드 -->
 </head>
 <body style="zoom: 1;">
@@ -20,7 +20,7 @@
         <div id="contentWrap">
             <div id="subTopWrap">
                 <div class="subTopArea">
-                    <h2 class="subTopTilte">전자문서지갑</h2>
+                    <h2 class="subTopTilte">디지털배지</h2>
                     <p class="subTopText"></p>
                 </div>
                 <div class="location">
@@ -28,89 +28,106 @@
                     <ul id="locHref">
                         <li style="padding:0 14px 0 14px;"><a href="javascript:void(0);">나의 정보(개인)</a></li>
                         <li style="padding:0 14px 0 14px;"><a href="javascript:void(0);">나의 전자지갑</a></li>
+                        <li style="padding:0 14px 0 14px;"><a href="javascript:void(0);">디지털배지</a></li>
                     </ul>
                 </div>
             </div>
 
             <div id="subContentWrap" class="fullContents">
                 <div class="subContArea">
+                    <div class="headingTitleArea">
+                        <h3 class="headingTitle">디지털배지</h3>
+                    </div>
+
                     <div class="contentArea" id="contentArea">
                         
                         
                         <!-- 디지털 배지 신규 추가 -->
-                        <div class="wallet">
-                            <div class="myHeader">
-                                <p class="myName">홍길동</p>
-                                <div class="myBtns">
-                                    <button type="button" class="on1"><span>지갑주소</span><i class="icon"></i></button>
+                        <div class="wallet stickybutton">
+                            <div class="badgeSearch">
+                                <div class="fCho">
+                                    <select title="발급일순">
+                                        <option>발급일</option>
+                                        <option>과정명</option>
+                                        <option>발급기관명</option>
+                                        <option>NCS종류</option>
+                                        <option>NCS레벨</option>
+                                    </select>
+                                </div>
+                                <div class="sBtns">
+                                    <button type="button" class="big" title="크게보기"><i></i></button> <!-- 활성화 시 active 클래스 추가 -->
+                                    <button type="button" class="small lineAdd active" title="목록보기"><i></i></button>
+                                    <button type="button" class="edit"><span>편집</span></button>
                                 </div>
                             </div>
-                            <div class="badge mt50">
-                                <div class="headT">
-                                    <p>디지털 배지</p>
-                                    <button type="button"><span>더보기</span><i class="icon"></i></button>
-                                </div>
-                                <hr class="height36">
-                                <div class="badgeGroup">
-                                    <ul class="list">
+                            
+                            <div class="badge">
+                                <div class="badgeGroup">  <!-- 편집 클릭 시 checkGroup 추가 -->
+                                    <ul class="list shortList lineTop"> <!-- 목록보기 시 shortList 클래스 추가 -->
                                         <li>
                                             <a href="javascript:void(0);" role="button">
                                                 <span class="img"><img src="../new_images/wallet/img_badge1.png" alt=""></span>
                                                 <span class="name ellipsis">디지털AA과정</span>
-                                                <span class="date">2023.08.01</span>
+                                                <span class="date">발급일: 2023.08.01</span>
                                             </a>
+                                            <i class="arrowIco"></i>
                                         </li>
                                         <li>
                                             <a href="javascript:void(0);" role="button">
                                                 <span class="img"><img src="../new_images/wallet/img_badge2.png" alt=""></span>
                                                 <span class="name ellipsis">디지털AB과정</span>
-                                                <span class="date">2013.05.13</span>
+                                                <span class="date">발급일: 2013.05.13</span>
                                             </a>
+                                            <i class="arrowIco"></i>
                                         </li>
                                         <li>
                                             <a href="javascript:void(0);" role="button">
                                                 <span class="img"><img src="../new_images/wallet/img_badge3.png" alt=""></span>
                                                 <span class="name ellipsis">개인정보보호개인정보보호개인정보보호</span>
-                                                <span class="date">2009.10.05</span>
+                                                <span class="date">발급일: 2009.10.05</span>
                                             </a>
+                                            <i class="arrowIco"></i>
                                         </li>
-                                        <li class="blur">
+                                        <li class="getCheck">
                                             <a href="javascript:void(0);" role="button">
                                                 <span class="img"><img src="../new_images/wallet/img_badge1.png" alt=""></span>
                                                 <span class="name ellipsis">디지털AA과정</span>
-                                                <span class="date">2023.08.01</span>
+                                                <span class="date">발급일: 2023.08.01</span>
                                             </a>
+                                            <i class="arrowIco"></i>
+                                            <button type="button" class="bget">발급받기</button>
                                         </li>
-                                        <li class="blur">
+                                        <li class="getCheck">
                                             <a href="javascript:void(0);" role="button">
                                                 <span class="img"><img src="../new_images/wallet/img_badge2.png" alt=""></span>
                                                 <span class="name ellipsis">디지털AB과정</span>
-                                                <span class="date">2013.05.13</span>
+                                                <span class="date">발급일: 2013.05.13</span>
                                             </a>
+                                            <i class="arrowIco"></i>
+                                            <button type="button" class="bget">발급받기</button>
                                         </li>
-                                        <li class="blur">
+                                        <li class="getCheck">
                                             <a href="javascript:void(0);" role="button">
                                                 <span class="img"><img src="../new_images/wallet/img_badge3.png" alt=""></span>
                                                 <span class="name ellipsis">개인정보보호</span>
-                                                <span class="date">2009.10.05</span>
+                                                <span class="date">발급일: 2009.10.05</span>
                                             </a>
+                                            <i class="arrowIco"></i>
+                                            <button type="button" class="bget">발급받기</button>
                                         </li>
                                     </ul>
-                                    
+
                                     <!-- 목록이 없을경우 -->
-                                    <div class="empt">
+                                    <div class="empt bottomLine">
                                         <img src="../new_images/wallet/img_empt.png" alt="">
-                                        <p>조회 가능한 디지털 배지가 없습니다.</p>
+                                        <p>조회된 내역이 존재하지 않습니다.</p>
                                     </div>
                                     <!-- //목록이 없을경우 -->
                                 </div>
                             </div>
 
-                            <div class="items mt70">
-                                <button type="button" class="act4"><span class="box"><i class="front"></i><span>내일배움카드확인서</span></span><i class="icon"></i></button>
-                                <button type="button" class="act1"><span class="box"><i class="front"></i><span>직업훈련 확인원</span></span><i class="icon"></i></button>
-                                <button type="button" class="act2"><span class="box"><i class="front"></i><span>이용내역</span></span><i class="icon"></i></button>
-                                <button type="button" class="act3"><span class="box"><i class="front"></i><span>보낸내역</span></span><i class="icon"></i></button>
+                            <div class="btnSingle mt50">
+                                <button type="button" class="button active">일괄발급</button>
                             </div>
                         </div>
                         <!-- //디지털 배지 신규 추가 -->
