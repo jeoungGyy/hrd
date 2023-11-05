@@ -1412,12 +1412,13 @@ img.attfile {width: 32px;}
 .myDetailBox > ul > li.myState2 > p.text2 > span.line{position:relative;}
 .myDetailBox > ul > li.myState2 > p.text2 > span.line:after{position:absolute; content:'';width:2px; height:30px; top:10px; background:#ebebec; margin:0 20px;}
 .myDetailBox > ul > li.myState2:last-child{border-bottom:none;}
-.myDetailBox > ul > li.myState2.icon01{background: url(/new_images/common/mybox_img01.png) center right no-repeat;}
-.myDetailBox > ul > li.myState2.icon02{background: url(/new_images/common/mybox_img02.png) center right no-repeat;}
-.myDetailBox > ul > li.myState2.icon03{background: url(/new_images/common/mybox_img03.png) center right no-repeat;}
-.myDetailBox > ul > li.myState2.icon04{background: url(/new_images/common/mybox_img04.png) center right no-repeat;}
-.myDetailBox > ul > li.myState2.icon05{background: url(/new_images/common/mybox_img05.png) center right no-repeat;}
-.myDetailBox > ul > li.myState2.icon06{background: url(/new_images/common/mybox_img06.png) center right no-repeat;}
+.myDetailBox > ul > li.myState2.icon01{background: url(../new_images/common/mybox_img01.png) center right no-repeat;}
+.myDetailBox > ul > li.myState2.icon02{background: url(../new_images/common/mybox_img02.png) center right no-repeat;}
+.myDetailBox > ul > li.myState2.icon03{background: url(../new_images/common/mybox_img03.png) center right no-repeat;}
+.myDetailBox > ul > li.myState2.icon04{background: url(../new_images/common/mybox_img04.png) center right no-repeat;}
+.myDetailBox > ul > li.myState2.icon05{background: url(../new_images/common/mybox_img05.png) center right no-repeat;}
+.myDetailBox > ul > li.myState2.icon06{background: url(../new_images/common/mybox_img06.png) center right no-repeat;}
+.myDetailBox > ul > li.myState2.icon01n{background: url(../new_images/common/mybox_img01_n.png) center right no-repeat;}
 
 
 
