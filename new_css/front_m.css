@@ -853,8 +853,8 @@ table.view.track-view tr td a {font-size: 24px !important;}
 .wallet .qrGroup .textQRtitle { margin-top: 40px; font-size: 36px; font-weight: 500; color: #292a2d; text-align: center;}
 .wallet .qrGroup .textQR { margin-top: 46px; font-size: 24px; color: #727476; word-break: break-all; text-align: center; line-height: 36px;}
 
-.wallet .myHeader { display: flex; justify-content: space-between; align-items: center; margin: 0 -30px; padding: 60px 30px; background-color: #f9fafd;}
-.wallet .myHeader .myName { display: block; font-size: 48px; font-weight: 500; color: #292a2d;}
+.wallet .myHeader { display: flex; justify-content: space-between; align-items: center; margin: 0 -30px; padding: 60px 30px; background-color: #f6f6f6;}
+.wallet .myHeader .myName { display: block; font-size: 46px; font-weight: 500; color: #292a2d;}
 .wallet .myHeader .myBtns button { display: flex; align-items: center; justify-content: space-between; width: 100%; height: 50px; border-radius: 10px;}
 .wallet .myHeader .myBtns button span { font-size: 24px; font-weight: 500; color: #fff; letter-spacing: 0;}
 .wallet .myHeader .myBtns .on1 { padding: 0 20px 0 21px; background-color: #4572db;}
@@ -965,7 +965,7 @@ table.view.track-view tr td a {font-size: 24px !important;}
 .wallet .badgeSearch select { padding-right: 30px; font-size: 24px; font-weight: 500; color: #4e4f51; border: none; background: url(../new_images/wallet/icon_badge_arrow2.png) no-repeat right 6px; appearance:none;}
 .wallet .badgeSearch >div { display: flex; align-items: center;}
 .wallet .badgeSearch >div.txtBtns p { font-size: 24px; font-weight: 500;}
-.wallet .badgeSearch button { display: flex; align-items: center; justify-content: center; height: 48px;}
+.wallet .badgeSearch button { display: flex; align-items: center; justify-content: center; height: 50px;}
 .wallet .badgeSearch button span { font-size: 24px; font-weight: 500; color: #4e4f51;}
 .wallet .badgeSearch button i { display: block; margin-right: 8px;}
 .wallet .badgeSearch button.active span { color: #4171df;}

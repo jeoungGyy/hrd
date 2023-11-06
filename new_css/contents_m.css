@@ -1411,6 +1411,7 @@ img.attfile {width: 32px;}
 .myDetailBox > ul > li.myState2 > p.text2 > em > span {font-size:32px; color:#258384; font-weight:500;}
 .myDetailBox > ul > li.myState2 > p.text2 > span.line{position:relative;}
 .myDetailBox > ul > li.myState2 > p.text2 > span.line:after{position:absolute; content:'';width:2px; height:30px; top:10px; background:#ebebec; margin:0 20px;}
+.myDetailBox > ul > li.myState2 > p.text2.newColor { color: #258384;}
 .myDetailBox > ul > li.myState2:last-child{border-bottom:none;}
 .myDetailBox > ul > li.myState2.icon01{background: url(../new_images/common/mybox_img01.png) center right no-repeat;}
 .myDetailBox > ul > li.myState2.icon02{background: url(../new_images/common/mybox_img02.png) center right no-repeat;}
