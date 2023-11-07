@@ -54,7 +54,7 @@
                                             <input type="text" value="" placeholder="기관명을 입력해주세요." title="기관명 검색" name="searchWord" id="searchWord">
                                             <button type="button" class="searchBtn" id="searchBtn" title="검색"><i></i></button>
 
-                                            <div class="searching">
+                                            <div class="searching" style="display: none;">
                                                 <ul class="overflowY" style="max-height: 240px;">
                                                     <li><button type="button"><span class="pointColor">한</span><span class="pointColor">국</span>산업인력공단</button></li>
                                                     <li><button type="button"><span class="pointColor">한</span><span class="pointColor">국</span>산업인력공단2</button></li>
@@ -109,7 +109,16 @@
                             </div>
                         </div>
                         <!-- //디지털 배지 신규 추가 -->
-
+                        <script>
+                            /* 디자인 확인 용 */
+                            $('#searchWord').on('change keyup paste', function() {
+                                if($(this).val()) {
+                                    $('.searching').show();
+                                } else {
+                                    $('.searching').hide();
+                                }
+                            });
+                        </script>
 
 
                     </div>
