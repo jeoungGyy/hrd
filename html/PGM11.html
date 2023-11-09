@@ -35,8 +35,18 @@
 
             <div id="subContentWrap" class="fullContents">
                 <div class="subContArea">
-                    <div class="headingTitleArea">
-                        <h3 class="headingTitle">디지털배지</h3>
+                    <div class="headingTitleArea por">
+                        <h3 class="headingTitle addBtn">
+                            <span>디지털배지</span>
+                            <button type="button" class="tolltipBtn" title="도움말 열기"><i>버튼</i></button>
+                        </h3>
+
+                        <div class="headTooltip" tabindex="0">
+                            <div class="group">
+                                <p>국민내일배움카드 수령을 위해 확인서를 발급하여 지정된 은행에서 활용할 수 있습니다.</p>
+                                <button type="button" title="툴팁 닫기"><i>버튼</i></button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="contentArea" id="contentArea">
@@ -122,7 +132,6 @@
                             <div class="btnSingle mt50">
                                 <button type="button" class="button active">일괄발급</button>
                             </div>
-                            
                         </div>
                         <!-- //디지털 배지 신규 추가 -->
                         
@@ -130,6 +139,29 @@
 
                     </div>
                 </div>
+                <script>
+                    var $headTooltip = $('.headTooltip');
+                    var $tolltipBtn = $('.tolltipBtn');
+                    
+                    $tolltipBtn.on('click', function() {
+                        var _positionTop = $(this).position().top;
+
+                        if($headTooltip.is(':visible') == false) {
+                            $('body').css('overflow', 'hidden');
+                            $headTooltip.addClass('open').css('top', _positionTop + 74).focus();
+                        } else {
+                            $('body').removeAttr('style');
+                            $headTooltip.removeClass('open');
+                            $tolltipBtn.focus();
+                        }
+                    });
+                    $headTooltip.find('button').on('click', function() {
+                        $('body').removeAttr('style');
+                        $headTooltip.removeClass('open');
+                        $tolltipBtn.focus();
+                    });
+                </script>
+
             </div>
         </div>
 

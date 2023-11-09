@@ -36,7 +36,7 @@
                 <div class="subContArea">
                     <div class="headingTitleArea">
                         <h3 class="headingTitle">나의 전자지갑</h3>
-                        <p class="headingText">온라인으로 전자증명서를 발급받아<br> 열람하거나 관련기관에 제출할 수 있는<br> 전자증명서 유통 수단입니다.</p>
+                        <p class="headingText">온라인으로 전자증명서를 발급받아<br> 관리할 수 있는 전자증명서 유통 수단입니다.</p>
                     </div>
 
                     <div class="contentArea" id="contentArea">
@@ -44,30 +44,53 @@
                         
                         <!-- 디지털 배지 신규 추가 -->
                         <div class="wallet">
-                            <div class="onBox">
-                                <div class="">
-                                    <div class="iconBox on1"><i></i></div>
-                                    <span>직업훈련<br>디지털배지</span>
+                            <div class="swiper onBox">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div>
+                                            <div class="iconBox on1"><i></i></div>
+                                            <span>직업훈련 디지털배지</span>
+                                        </div>
+                                        <p>내가 받은 훈련 수료증을 디지털배지로 발급받아<br> 워크넷 입사지원에 사용할 수 있어요.</p>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="">
+                                            <div class="iconBox on3"><i></i></div>
+                                            <span>국민내일배움카드 확인서</span>
+                                        </div>
+                                        <p>국민내일배움카드 발급을 위해 은행 창구에서<br> 내 전자지갑에 담긴 '국민내일배움카드 확인서'를<br> 보여주세요.</p>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="">
+                                            <div class="iconBox on2"><i></i></div>
+                                            <span>직업훈련 확인원</span>
+                                        </div>
+                                        <p>'직업훈련 확인원'을 전자문서로 발급받아 훈련이력<br> 증빙으로 활용할 수 있습니다.</p>
+                                    </div>
                                 </div>
-                                <div class="">
-                                    <div class="iconBox on2"><i></i></div>
-                                    <span>직업훈련<br>확인원</span>
-                                </div>
-                                <div class="">
-                                    <div class="iconBox on3"><i></i></div>
-                                    <span>내일배움카드<br>확인서</span>
-                                </div>
+                                <div class="swiper-pagination"></div>
                             </div>
                             <p class="onPra">
-                                전자지갑이 발급되지 않았습니다.<br>
-                                전자지갑 발급화면으로 이동하시겠습니까?
+                                전자지갑을 발급하시겠습니까?
                             </p>
 
-                            <div class="btnSingle mt60">
+                            <div class="btnSingle mt50">
                                 <button type="button" class="button active">확인</button>
                             </div>
                         </div>
                         <!-- //디지털 배지 신규 추가 -->
+                        <script>
+                            const swiper = new Swiper('.onBox', {
+                                slidesPerView: 'auto',
+                                speed: 400,
+                                spaceBetween: 10,
+                                pagination: {
+                                    el: '.swiper-pagination',
+                                    clickable: true,
+                                    type: 'bullets'
+                                }
+                            });
+                        </script>
 
 
                     </div>
