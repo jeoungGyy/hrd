@@ -1397,7 +1397,7 @@ img.attfile {width: 32px;}
 .myBoxArea > .myBox{ overflow:hidden; }
 .myBoxArea > .myBox > li.myPhoto{float:left; margin-right:30px;}
 .myBoxArea > .myBox > li.myPhoto > img {border-radius: 50%; border:4px solid #51545d;}
-.myBoxArea > .myBox > li.myState > p.text1 {font-size:36px; color:#4e4f51;}
+.myBoxArea > .myBox > li.myState > p.text1 {font-size:36px; font-weight: 500; color:#4e4f51;}
 .myBoxArea > .myBox > li.myState > p.text2 {font-size:32px; color:#4e4f51;}
 .myBoxArea > .myBox > li.myState > p.text2 > span {color:#258384; font-weight:500;}
 .myBoxArea > .myBox > li.myState > p.text3 {font-size:28px; color:#727476;}

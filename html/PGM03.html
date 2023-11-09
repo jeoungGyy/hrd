@@ -20,14 +20,14 @@
         <div id="contentWrap">
             <div id="subTopWrap">
                 <div class="subTopArea">
-                    <h2 class="subTopTilte">전자문서지갑</h2>
+                    <h2 class="subTopTilte">전자지갑</h2>
                     <p class="subTopText"></p>
                 </div>
                 <div class="location">
                     <!-- 2depth-->
                     <ul id="locHref">
                         <li style="padding:0 14px 0 14px;"><a href="javascript:void(0);">나의 정보(개인)</a></li>
-                        <li style="padding:0 14px 0 14px;"><a href="javascript:void(0);">나의 전자지갑</a></li>
+                        <li style="padding:0 14px 0 14px;"><a href="javascript:void(0);">전자지갑</a></li>
                     </ul>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                                             <input type="checkbox" id="select1" name="select">
                                             <label for="select1">전자증명서비스 약관 통합동의</label>
                                         </div>
-                                        <button type="button" title="상세정보 닫힘"><i>버튼</i></button>
+                                        <button type="button" class="toggleBtn" title="상세정보 닫힘"><i></i></button>
                                     </div>
                                     <div class="targetPanel" style="display: none;">
                                         <div class="overflowY" style="height: 480px;">
@@ -316,7 +316,7 @@
                                             <input type="checkbox" id="select2" name="select">
                                             <label for="select2">개인정보 수집 및 이용동의</label>
                                         </div>
-                                        <button type="button" title="상세정보 닫힘"><i>버튼</i></button>
+                                        <button type="button" class="toggleBtn"  title="상세정보 닫힘"><i></i></button>
                                     </div>
                                     <div class="targetPanel" style="display: none;">
                                         <div class="overflowY" style="height: 480px;">
@@ -409,9 +409,9 @@
                             /* 디자인 확인 용 - 약관 펼치기 버튼 */
                             $('.ui_checkBox button').on('click', function() {
                                 if($(this).parents('.ui_checkBox').next().is(':visible') == false) {
-                                    $(this).attr('title', '상세정보 열림').parents('.ui_checkBox').next().slideDown(200);
+                                    $(this).addClass('active').attr('title', '상세정보 열림').parents('.ui_checkBox').next().slideDown(200);
                                 } else {
-                                    $(this).attr('title', '상세정보 닫힘').parents('.ui_checkBox').next().slideUp(200);
+                                    $(this).removeClass('active').attr('title', '상세정보 닫힘').parents('.ui_checkBox').next().slideUp(200);
                                 }
                             });
                         </script>

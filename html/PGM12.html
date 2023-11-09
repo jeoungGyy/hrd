@@ -27,7 +27,7 @@
                     <!-- 2depth-->
                     <ul id="locHref">
                         <li style="padding:0 14px 0 14px;"><a href="javascript:void(0);">나의 정보(개인)</a></li>
-                        <li style="padding:0 14px 0 14px;"><a href="javascript:void(0);">나의 전자지갑</a></li>
+                        <li style="padding:0 14px 0 14px;"><a href="javascript:void(0);">전자지갑</a></li>
                         <li style="padding:0 14px 0 14px;"><a href="javascript:void(0);">디지털배지</a></li>
                     </ul>
                 </div>
@@ -36,7 +36,14 @@
             <div id="subContentWrap" class="fullContents">
                 <div class="subContArea">
                     <div class="headingTitleArea">
-                        <h3 class="headingTitle">디지털배지</h3>
+                        <h3 class="headingTitle addBtn">
+                            <span>디지털배지</span>
+                            <button type="button" class="toolTipBtn" title="디지털배지 툴팁">디지털배지 확인서</button>
+
+                            <div class="toolTipContent right newText" tabindex="0">
+                                <p class="toolTipTitle mt10">내가 받은 직업훈련을 배지로 발급받아​ 성과를 증명할 수 있는 온라인​ 자격증명서비스 입니다.</p>
+                            </div>
+                        </h3>
                     </div>
 
                     <div class="contentArea" id="contentArea">
@@ -46,7 +53,7 @@
                         <div class="wallet stickybutton">
                             <div class="badgeSearch">
                                 <div class="fCho">
-                                    <select title="발급일순">
+                                    <select title="구분 선택">
                                         <option>발급일</option>
                                         <option>과정명</option>
                                         <option>발급기관명</option>
@@ -88,6 +95,8 @@
                                             </a>
                                             <i class="arrowIco"></i>
                                         </li>
+                                        
+                                         <!-- 배지받기 일 경우 -->
                                         <li class="getCheck">
                                             <a href="javascript:void(0);" role="button">
                                                 <span class="img"><img src="../new_images/wallet/img_badge1.png" alt=""></span>
@@ -106,14 +115,14 @@
                                             <i class="arrowIco"></i>
                                             <button type="button" class="bget">발급받기</button>
                                         </li>
-                                        <li class="getCheck">
+
+                                        <!-- 폐기일 경우 -->
+                                        <li class="discard">
                                             <a href="javascript:void(0);" role="button">
                                                 <span class="img"><img src="../new_images/wallet/img_badge3.png" alt=""></span>
-                                                <span class="name ellipsis">개인정보보호</span>
-                                                <span class="date">발급일: 2009.10.05</span>
+                                                <span class="name ellipsis">개인정보보호개인정보보호개인정보보호</span>
+                                                <span class="date">2009.10.05</span>
                                             </a>
-                                            <i class="arrowIco"></i>
-                                            <button type="button" class="bget">발급받기</button>
                                         </li>
                                     </ul>
 

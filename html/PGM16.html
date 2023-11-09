@@ -20,14 +20,14 @@
         <div id="contentWrap">
             <div id="subTopWrap">
                 <div class="subTopArea">
-                    <h2 class="subTopTilte">전자문서지갑</h2>
+                    <h2 class="subTopTilte">직업훈련 확인원</h2>
                     <p class="subTopText"></p>
                 </div>
                 <div class="location">
                     <!-- 2depth-->
                     <ul id="locHref">
                         <li style="padding:0 14px 0 14px;"><a href="javascript:void(0);">나의 정보(개인)</a></li>
-                        <li style="padding:0 14px 0 14px;"><a href="javascript:void(0);">나의 전자지갑</a></li>
+                        <li style="padding:0 14px 0 14px;"><a href="javascript:void(0);">전자지갑</a></li>
                         <li style="padding:0 14px 0 14px;"><a href="javascript:void(0);">직업훈련확인원</a></li>
                     </ul>
                 </div>
@@ -36,20 +36,26 @@
             <div id="subContentWrap" class="fullContents">
                 <div class="subContArea">
                     <div class="headingTitleArea">
-                        <h3 class="headingTitle">직업훈련확인원</h3>
+                        <h3 class="headingTitle addBtn">
+                            <span>직업훈련확인원</span>
+                            <button type="button" class="toolTipBtn" title="직업훈련확인원 툴팁">직업훈련확인원</button>
+
+                            <div class="toolTipContent right newText" tabindex="0">
+                                <p class="toolTipTitle mt10">직업능력개발훈련과정을 수료하였음을 확인하는 전자문서입니다.</p>
+                            </div>
+                        </h3>
                     </div>
 
                     <div class="contentArea" id="contentArea">
                         
                         
                         <!-- 디지털 배지 신규 추가 -->
-                        <div class="wallet stickybutton">
+                        <div class="wallet">
                             <div class="badgeSearch">
                                 <div class="fCho">
-                                    <select title="발급일">
-                                        <option>발급일</option>
-                                        <option>과정명</option>
-                                        <option>발급기관명​</option>
+                                    <select title="구분 선택">
+                                        <option>수료일순</option>
+                                        <option>발급일순</option>
                                     </select>
                                 </div>
                                 <div class="sBtns">
@@ -60,27 +66,15 @@
                             <div class="sot">
                                 <div class="sotGroup">
                                     <ul class="sotList"> <!-- 목록보기 시 shortList 클래스 추가 -->
-                                        <li>
-                                            <a href="javascript:void(0);" role="button">
-                                                <p class="title">디지털AB과정(발급일:2023.02.16)</p>
-                                                <p class="name">서울고용훈련센터</p>
-                                                <span class="date">2023.06.01~2023.06.20</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" role="button">
-                                                <p class="title">유압교육 초급훈련 유압교육 초급훈련 (발급일:2023.06.21)</p>
-                                                <p class="name">서울고용훈련센터</p>
-                                                <span class="date">2023.02.01~2023.02.15</span>
-                                            </a>
-                                        </li>
+                                        
+                                        <!-- 발급인 경우 -->
                                         <li class="getCheck">
                                             <a href="javascript:void(0);" role="button">
                                                 <p class="title">디지털AB과정(발급일:2023.02.16)</p>
                                                 <p class="name">서울고용훈련센터</p>
                                                 <span class="date">2023.06.01~2023.06.20</span>
                                             </a>
-                                            <button type="button" class="bget">발급받기</button>
+                                            <button type="button" class="bget">발급</button>
                                         </li>
                                         <li class="getCheck">
                                             <a href="javascript:void(0);" role="button">
@@ -88,14 +82,28 @@
                                                 <p class="name">서울고용훈련센터</p>
                                                 <span class="date">2023.02.01~2023.02.15</span>
                                             </a>
-                                            <button type="button" class="bget">발급받기</button>
+                                            <button type="button" class="bget">발급</button>
+                                        </li>
+
+                                        <!-- 갱신인 경우 -->
+                                        <li class="update">
+                                            <a href="javascript:void(0);" role="button">
+                                                <p class="title">디지털AB과정(발급일:2023.02.16)</p>
+                                                <p class="name">서울고용훈련센터</p>
+                                                <span class="date">2023.06.01~2023.06.20</span>
+                                            </a>
+                                            <button type="button" class="bget">갱신</button>
+                                        </li>
+                                        <li class="update">
+                                            <a href="javascript:void(0);" role="button">
+                                                <p class="title">유압교육 초급훈련 유압교육 초급훈련 (발급일:2023.06.21)</p>
+                                                <p class="name">서울고용훈련센터</p>
+                                                <span class="date">2023.02.01~2023.02.15</span>
+                                            </a>
+                                            <button type="button" class="bget">갱신</button>
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
-
-                            <div class="btnSingle mt50">
-                                <button type="button" class="button active">일괄발급</button>
                             </div>
                         </div>
                         <!-- //디지털 배지 신규 추가 -->
