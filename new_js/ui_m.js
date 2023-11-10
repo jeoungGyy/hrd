@@ -338,7 +338,7 @@ $(function(){
 		$(this).next().remove(".tmpClose");
 		
 //		$(this).next().find('button[title=닫기][class=tmpClose]').remove();
-		$(this).next().append("<a href='javascript:void(0);' title='닫기'><img tabindex='0' src='/new_images/common/btnPopupClose.png' alt='닫기' class='tmpClose' style='position:absolute;top:10px;right:10px;'/></a>");
+		$(this).next().append("<a href='javascript:void(0);' title='닫기'><img tabindex='0' src='../new_images/common/btnPopupClose.png' alt='닫기' class='tmpClose' style='position:absolute;top:10px;right:10px;'/></a>");
 		
 		$(this).next().focus();
 		//$('#mask').fadeIn();
