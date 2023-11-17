@@ -903,8 +903,8 @@ table.view.track-view tr td a {font-size: 24px !important;}
 .wallet .badge .headT .toMoreBtn span { display: block; font-size: 24px; color: #4e4f51;}
 .wallet .badge .headT .toMoreBtn i { display: block; width: 14px; height: 24px; margin-left: 14px; background: url(../new_images/wallet/icon_badge_arrow.png) no-repeat;}
 
-.wallet .badge .badgeGroup .list { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px;}
-.wallet .badge .badgeGroup .list li { position: relative; width: calc(100% / 3 - 10px); text-align: center;}
+.wallet .badge .badgeGroup .list { display: flex; flex-wrap: wrap; gap: 10px;}
+.wallet .badge .badgeGroup .list li { position: relative; width: calc(100% / 3 - 7px); text-align: center;}
 .wallet .badge .badgeGroup .list li a { display: block; position: relative; padding: 20px 0; border: 2px solid transparent;}
 .wallet .badge .badgeGroup .list li a.check { border-color: #4171df;}
 .wallet .badge .badgeGroup .list li a.check::after { content: ''; position: absolute; left: 0; top: 0; z-index: 1; width: 40px; height: 40px; background: #4171df url(../new_images/wallet/icon_checkbox_checked.png) no-repeat;}
