@@ -827,7 +827,7 @@ table.view.track-view tr td a {font-size: 24px !important;}
 .wallet .btnSingle.noShadow { box-shadow: none !important;}
 .wallet .btnSingle.noBg { background-color: transparent !important;}
 
-.wallet.stickybutton { padding-bottom: 100px;}
+.wallet.stickybutton { padding-bottom: 110px;}
 .wallet.stickybutton .btnSingle,
 .wallet.stickybutton .btnDouble { position: fixed; left: 0; right: 0; bottom: 100px; z-index: 20; padding: 20px 30px; background-color: #fff; box-shadow: 0 -6px 20px rgba(102, 102, 102, 0.06);}
 .wallet .singelFixed { position: fixed; left: 0; right: 0; bottom: 150px; padding: 0 30px;}
@@ -994,13 +994,27 @@ table.view.track-view tr td a {font-size: 24px !important;}
 .wallet .card .official p img { position: absolute; right: -44px; top: 50%; margin-top: -32px;}
 .wallet .card .official.position { margin-top: 125px;}
 .wallet .card .processName { margin-top: 30px; font-size: 46px; font-weight: 500; color: #292a2d; text-align: center;}
+.wallet .card .processName.otherStyle { margin-top: 10px; line-height: 66px;}
 .wallet .card .overflowY { margin-right: -30px; padding-right: 30px;}
 .wallet .card .hrdLogo { margin-top: 70px; text-align: center;}
+.wallet .card .stateNameDate { margin-top: 50px; padding: 20px; background-color: #f0f0f2; border-radius: 14px;}
+.wallet .card .stateNameDate .flex { display: flex; justify-content: space-between;}
+.wallet .card .stateNameDate .flex ~ .flex { margin-top: 16px;}
+.wallet .card .stateNameDate .flex .front { font-size: 24px; color: #292a2d;}
+.wallet .card .stateNameDate .flex .back { font-size: 24px; color: #727476;}
+.wallet .card .listOl >li { padding: 50px 0; border-bottom: 1px solid #e2e2e4;}
+.wallet .card .listOl >li .title { font-size: 36px; font-weight: 500; color: #292a2d; line-height: 50px;}
+.wallet .card .olSubTitle { margin-top: 20px; padding-left: 10px; font-size: 24px; color: #727476; text-indent: -10px; line-height: 36px;}
+.wallet .card .auth { margin-top: 50px; text-align: center;}
+.wallet .card .auth .authText { font-size: 28px; font-weight: 500; color: #292a2d; line-height: 40px;}
+.wallet .card .auth .authDate { margin-top: 50px; font-size: 28px; font-weight: 500; color: #292a2d;}
 .wallet .card.long { height: 725px;}
 .wallet .card.long2 { height: 666px;}
 .wallet .card.ozGroup { width: 460px; height: inherit; margin: 0 auto; padding: 40px 40px 46px; background-color: #fff; border-radius: 20px; box-shadow: 0 0 30px rgba(102, 102, 102, 0.2);}
 .wallet .card.preserve { transform: rotateY(180deg);}
 .wallet .card.noPositon { position: fixed; left: 30px; right: 30px; top: 50%; height: inherit; margin-top: 0; transform: translateY(-50%);}
+.wallet .card.noHeight { height: initial;}
+.wallet .card.noHeight .frontCard { position: initial; padding-bottom: 120px;}
 .wallet .card.noPositon .frontCard { position: initial;}
 
 .wallet .issueH4 { display: flex; justify-content: center; align-items: center;}
