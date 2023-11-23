@@ -1013,7 +1013,7 @@ table.view.track-view tr td a {font-size: 24px !important;}
 .wallet .card.ozGroup { width: 460px; height: inherit; margin: 0 auto; padding: 40px 40px 46px; background-color: #fff; border-radius: 20px; box-shadow: 0 0 30px rgba(102, 102, 102, 0.2);}
 .wallet .card.preserve { transform: rotateY(180deg);}
 .wallet .card.noPositon { position: fixed; left: 30px; right: 30px; top: 50%; height: inherit; margin-top: 0; transform: translateY(-50%);}
-.wallet .card.noHeight { height: initial;}
+.wallet .card.noHeight { height: initial; transform-style: initial;}
 .wallet .card.noHeight .frontCard { position: initial; padding-bottom: 120px;}
 .wallet .card.noPositon .frontCard { position: initial;}
 
