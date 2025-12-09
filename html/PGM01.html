@@ -1,28 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>dialog</title>
-    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dialog Test</title>
+
 <style>
-/* dialog 스타일 */
+/* dialog */
 dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border: none;
   border-radius: 8px;
   padding: 20px;
+  background: #fff;
+  z-index: 10001;
 }
+
+/* open 상태가 아닐 때만 숨기기 */
+dialog:not([open]) {
+  display: none;
+}
+
 dialog::backdrop {
   background: rgba(0, 0, 0, .5);
 }
 
-/* div 레이어 */
+/* div layer */
 .layer-dim {
   display: none;
   position: fixed;
   left: 0; top: 0;
   width: 100%; height: 100%;
   background: rgba(0,0,0,.5);
+  z-index: 10000;
 }
 .layer-popup {
   position: absolute;
@@ -34,9 +47,9 @@ dialog::backdrop {
 }
 </style>
 </head>
+
 <body>
-  <div>
-    글글글글글글글글글글글글글글글글
+글글글글글글글글글글글글글글글글
     <button type="button">버튼 포커스 테스트</button> <br>
     <button type="button">버튼 포커스 테스트</button> <br>
     <button type="button">버튼 포커스 테스트</button> <br>
@@ -45,41 +58,42 @@ dialog::backdrop {
     <button type="button">버튼 포커스 테스트</button> <br>
     <button type="button">버튼 포커스 테스트</button> <br>
     글글글글글글글글글글글글글글글글글
-
-
-      <!-- dialog -->
+<!-- dialog -->
 <dialog id="dialogLayer">
   <p>dialog 팝업입니다.</p>
   <button class="dialog-close">닫기</button>
 </dialog>
 
-<!-- div layer popup -->
+<!-- div 레이어 팝업 -->
 <div class="layer-dim" id="divLayer">
   <div class="layer-popup">
     <p>div 팝업입니다.</p>
     <button class="div-close">닫기</button>
   </div>
 </div>
-  </div>
 
-
+<!-- buttons -->
 <button id="openDialog">dialog 열기</button>
 <button id="openDiv">div 레이어 열기</button>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
 $(function() {
   const dialog = document.getElementById("dialogLayer");
 
-  /** dialog 제어 **/
-  $("#openDialog").on("click", () => dialog.showModal());
-  $(".dialog-close").on("click", () => dialog.close());
-
-  // 배경 클릭하면 닫기
+  /** dialog 관리 **/
+  $("#openDialog").on("click", function() {
+    dialog.showModal();
+  });
+  $(".dialog-close").on("click", function() {
+    dialog.close();
+  });
+  // dialog 바깥 클릭 시 닫기
   $("#dialogLayer").on("click", function(e) {
-    if (e.target === this) this.close();
+    if (e.target === this) dialog.close();
   });
 
-  /** div 레이어 제어 **/
+  /** div layer 관리 **/
   $("#openDiv").on("click", function() {
     $("#divLayer").fadeIn(200);
   });
@@ -87,14 +101,15 @@ $(function() {
     if (e.target === this) $("#divLayer").fadeOut(200);
   });
 
-  /** ESC 닫기 (공통) **/
+  /** ESC로 닫기 (공통) **/
   $(document).on("keydown", function(e) {
     if (e.key === "Escape") {
-      dialog.close();
+      if (dialog.open) dialog.close();
       $("#divLayer").fadeOut(200);
     }
   });
 });
 </script>
+
 </body>
 </html>
