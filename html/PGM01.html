@@ -105,7 +105,7 @@
 
 <body>
 
-    <button type="button" id="test2">클릭 이벤트로 열기55555</button>
+    <button type="button" id="test2">클릭 이벤트로 66666</button>
     <button type="button" id="test3" class="JS-layerOpen2" aria-controls="layer1">기본 클래스로 열기</button>
 
     <dialog id="layer3" class="layerComm Add_type_bottom">
@@ -243,7 +243,8 @@
                         if (startHeight >= maxHeight * 0.9) {
                             if (dragY > 80) {
                                 $dialog.css({
-                                    'height': normalHeight + 'px',
+                                    // 'height': normalHeight + 'px',
+                                    'height': '',
                                     'transform': ''
                                 });
                             } else {
