@@ -1,804 +1,572 @@
 <!DOCTYPE html>
-
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bottom Sheet Modal</title>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<style>
-* {
-    box-sizing:border-box;
-}
-html,
-body {
-    margin:0;
-    padding:0;
-}
-body {
-    padding:30px;
-}
-button {
-    padding:10px 15px;
-    margin:5px 0;
-}
-.layerComm {
-    overflow:hidden;
-    width:100%;
-    max-width:none;
-    max-height:100dvh;
-    border:0;
-    background:transparent;
-}
-.layerComm::backdrop {
-    background:rgb(0,0,0,.4);
-    opacity:0;
-    transition:opacity .3s cubic-bezier(0.25,1,0.5,1);
-}
-.layerComm.is_background {
-    pointer-events:none;
-}
-.layerComm.Add_type_bottom {
-    inset:auto 0 0 0;
-    width:100%;
-    max-height:100dvh;
-    padding:0;
-    transform:translateY(100%);
-    transition:height .3s, transform .3s;
-}
-.layerComm.Add_type_bottom.is_current {
-    transform:translate3d(0,0,0);
-    pointer-events:auto;
-}
-.layerComm.Add_type_bottom.is_current::backdrop {
-    opacity:1;
-}
-.layerComm .layer_body {
-    display:flex;
-    flex-direction:column;
-    width:100%;
-    height:100%;
-    min-height:0;
-    padding:30px;
-    background:#fff;
-    border-radius:20px 20px 0 0;
-}
-.layerComm .over {
-    overflow-x:hidden;
-    overflow-y:auto;
-    flex:1 1 auto;
-    min-height:0;
-    -webkit-overflow-scrolling:touch;
-}
-.layerComm .touch {
-    display:block;
-    flex:0 0 auto;
-    width:100%;
-    margin-bottom:20px;
-    touch-action:none;
-    user-select:none;
-    cursor:grab;
-}
-.layerComm .touch:active {
-    cursor:grabbing;
-}
-.layerComm.is_dragging {
-    transition:none!important;
-}
-.layerComm button {
-    margin:5px 0;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialog Touch Drag</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            padding: 30px
+        }
+
+        button {
+            padding: 10px;
+            border: 1px solid #000;
+            background: #fff
+        }
+
+        .layerComm {
+            overflow: hidden;
+            width: 100%;
+            max-width: none;
+            max-height: 100dvh;
+            border: 0;
+            background: transparent
+        }
+
+        .layerComm::backdrop {
+            background: rgb(0, 0, 0, .4);
+            opacity: 0;
+            transition: opacity .3s cubic-bezier(0.25, 1, 0.5, 1)
+        }
+
+        .layerComm.is_background {
+            pointer-events: none
+        }
+
+        .layerComm.Add_type_bottom {
+            inset: auto 0 0 0;
+            width: 100%;
+            max-height: 100dvh;
+            padding: 0;
+            transform: translateY(100%);
+            /* iOS Safari 모션 자연스럽게 처리 */
+            transition: transform .3s cubic-bezier(0.25, 1, 0.5, 1), height .3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .layerComm.Add_type_bottom.is_current {
+            transform: translateY(0);
+            pointer-events: auto
+        }
+
+        .layerComm.Add_type_bottom.is_current::backdrop {
+            opacity: 1
+        }
+
+        .layerComm .layer_body {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            min-height: 0;
+            padding: 30px;
+            background: #fff;
+            border-radius: 20px 20px 0 0
+        }
+
+        .layerComm .over {
+            overflow-x: hidden;
+            overflow-y: auto;
+            flex: 1;
+            min-height: 0;
+            -webkit-overflow-scrolling: touch
+        }
+
+        .layerComm .touch {
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+            touch-action: none;
+            user-select: none;
+            cursor: grab
+        }
+
+        .layerComm .touch:active {
+            cursor: grabbing
+        }
+
+        .layerComm.is_dragging {
+            transition: none !important
+        }
+
+        .layerComm button {
+            margin: 5px 0
+        }
+    </style>
 </head>
+
 <body>
 
-<button type="button" id="test2">첫 번째 모달 열기</button> <button type="button" id="test3">첫 번째 모달 열기 - 일반</button>
+    <button type="button" id="test2">클릭 이벤트로 열기33</button>
+    <button type="button" id="test3" class="JS-layerOpen2" aria-controls="layer1">기본 클래스로 열기</button>
 
-<dialog id="layer1" class="layerComm Add_type_bottom">
-    <div class="layer_body">
-        <button type="button" class="touch">첫 번째 모달 드래그</button>
-        <div class="over">
-            <h2>첫 번째 모달</h2>
-            <p>첫 번째 모달 내용입니다.</p>
-            <p>내용을 충분히 넣어서 테스트할 수 있습니다.</p>
-            <p>내용 01</p>
-            <p>내용 02</p>
-            <p>내용 03</p>
-            <p>내용 04</p>
-            <p>내용 05</p>
-            <p>내용 06</p>
-            <p>내용 07</p>
-            <p>내용 08</p>
-            <p>내용 09</p>
-            <p>내용 10</p>
+    <dialog id="layer3" class="layerComm Add_type_bottom">
+        <div class="layer_body">
+            <button type="button" class="touch">☰ 터치해서 움직이기</button>
+            <div class="over">
+                <p>세번째 레이어 (스크롤 O)</p>
+                <button type="button" class="close44">모든 레이어 한번에 닫기</button>
+                <button type="button" class="close">닫기</button>
+                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
+            </div>
+        </div>
+    </dialog>
 
-```
-        <button type="button" class="JS-layerOpen2">두 번째 모달 열기</button>
-        <button type="button" class="JS-layerOpen2-closePrevious">첫 번째 닫고 두 번째 열기</button>
+    <dialog id="layer2" class="layerComm Add_type_bottom">
+        <div class="layer_body">
+            <button type="button" class="touch">☰ 터치해서 움직이기</button>
+            <div class="over">
+                <p>두번째 레이어 (스크롤 X - 위로 드래그 불가)</p>
+                <button type="button" class="JS-layerOpen2" aria-controls="layer3">세번째 레이어 열기</button>
+                <button type="button" class="close33">클릭 이벤트로 닫기</button>
+                <button type="button" class="close">닫기</button>
+            </div>
+        </div>
+    </dialog>
 
-        <button type="button" class="close33">닫기</button>
-        <button type="button" class="close">닫기</button>
-    </div>
-</div>
-```
+    <dialog id="layer1" class="layerComm Add_type_bottom">
+        <div class="layer_body">
+            <button type="button" class="touch">☰ 터치해서 움직이기</button>
+            <div class="over">
+                <p>첫번째 레이어 (스크롤 O)</p>
+                <button type="button" class="JS-layerOpen2" aria-controls="layer2">두번째 레이어 열기</button>
+                <button type="button" class="JS-layerOpen2-closePrevious" aria-controls="layer2">첫번째 닫고 두번째 열기</button>
+                <button type="button" class="close33">클릭 이벤트로 닫기</button>
+                <button type="button" class="close">닫기</button>
+                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
+                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
+                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
+                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
+                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
+                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
+                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
+            </div>
+        </div>
+    </dialog>
 
-</dialog>
+    <script>
+        var layerOpen = {
+            stack: [],
+            obj: {},
+            init: function () {
+                var self = this;
 
-<dialog id="layer2" class="layerComm Add_type_bottom">
-    <div class="layer_body">
-        <button type="button" class="touch">두 번째 모달 드래그</button>
-        <div class="over">
-            <h2>두 번째 모달</h2>
-            <p>두 번째 모달 내용입니다.</p>
-            <p>내용이 적은 모달입니다.</p>
-
-```
-        <button type="button" class="JS-layerOpen2">세 번째 모달 열기</button>
-
-        <button type="button" class="close33">닫기</button>
-        <button type="button" class="close">닫기</button>
-    </div>
-</div>
-```
-
-</dialog>
-
-<dialog id="layer3" class="layerComm Add_type_bottom">
-    <div class="layer_body">
-        <button type="button" class="touch">세 번째 모달 드래그</button>
-        <div class="over">
-            <h2>세 번째 모달</h2>
-            <p>세 번째 모달은 내용이 많아서 스크롤이 발생합니다.</p>
-            <p>내용 01</p>
-            <p>내용 02</p>
-            <p>내용 03</p>
-            <p>내용 04</p>
-            <p>내용 05</p>
-            <p>내용 06</p>
-            <p>내용 07</p>
-            <p>내용 08</p>
-            <p>내용 09</p>
-            <p>내용 10</p>
-            <p>내용 11</p>
-            <p>내용 12</p>
-            <p>내용 13</p>
-            <p>내용 14</p>
-            <p>내용 15</p>
-            <p>내용 16</p>
-            <p>내용 17</p>
-            <p>내용 18</p>
-            <p>내용 19</p>
-            <p>내용 20</p>
-            <p>내용 21</p>
-            <p>내용 22</p>
-            <p>내용 23</p>
-            <p>내용 24</p>
-            <p>내용 25</p>
-            <p>내용 26</p>
-            <p>내용 27</p>
-            <p>내용 28</p>
-            <p>내용 29</p>
-            <p>내용 30</p>
-            <p>내용 31</p>
-            <p>내용 32</p>
-            <p>내용 33</p>
-            <p>내용 34</p>
-            <p>내용 35</p>
-
-```
-        <button type="button" class="close44">모든 레이어 한번에 닫기</button>
-        <button type="button" class="close">닫기</button>
-    </div>
-</div>
-```
-
-</dialog>
-
-<script>
-var layerOpen = {
-    stack: [],
-    obj: {},
-
-    init: function() {
-        var self = this;
-
-        $('.layerComm').each(function() {
-            self.add($(this).attr('id'));
-        });
-
-        $('.JS-layerOpen2').on('click', function() {
-            var id = $(this).closest('.layerComm').attr('id');
-
-            if (id === 'layer1') {
-                self.open('layer2');
-            } else if (id === 'layer2') {
-                self.open('layer3');
-            }
-        });
-
-        $('.JS-layerOpen2-closePrevious').on('click', function() {
-            self.open('layer2', {
-                closePrevious:true
-            });
-        });
-
-        $('.close44').on('click', function() {
-            self.close('all');
-        });
-
-        $('.close33, .close').on('click', function() {
-            var id = $(this).closest('.layerComm').attr('id');
-            self.close(id);
-        });
-
-        self.touchEvent();
-    },
-
-    add: function(id, options) {
-        var self = this;
-        var $dialog = $('#' + id);
-
-        if (!$dialog.length) return;
-
-        self.obj[id] = {
-            $dialog:$dialog,
-            $focus:null,
-            currentTarget:null,
-            normalHeight:400,
-            hasScroll:false,
-            options:options || {}
-        };
-
-        $dialog.on('cancel', function(e) {
-            e.preventDefault();
-            self.close(id);
-        });
-
-        $dialog.on('click', function(e) {
-            if (e.target === this) {
-                self.close(id);
-            }
-        });
-    },
-
-    checkScroll: function(data) {
-        var $over = data.$dialog.find('.over');
-
-        if (!$over.length) {
-            data.hasScroll = false;
-            return false;
-        }
-
-        var element = $over[0];
-
-        data.hasScroll = element.scrollHeight > element.clientHeight + 1;
-
-        return data.hasScroll;
-    },
-
-    setNormalHeight: function(data, callback) {
-        var self = this;
-        var $dialog = data.$dialog;
-        var $body = $dialog.find('.layer_body');
-
-        /*
-         * 자연 높이를 측정하기 위해 잠시 auto
-         */
-        $dialog.css({
-            height:'auto',
-            transform:'translate3d(0,0,0)'
-        });
-
-        $body.css({
-            height:'auto'
-        });
-
-        requestAnimationFrame(function() {
-            var naturalHeight = $body.outerHeight(true);
-            var maxHeight = window.innerHeight;
-
-            naturalHeight = Math.min(naturalHeight, maxHeight);
-
-            /*
-             * 먼저 dialog 높이를 확정
-             */
-            $dialog.css({
-                height:naturalHeight + 'px'
-            });
-
-            /*
-             * layer_body는 dialog 높이를 그대로 사용
-             */
-            $body.css({
-                height:'100%'
-            });
-
-            requestAnimationFrame(function() {
-                var hasScroll = self.checkScroll(data);
-
-                if (hasScroll) {
-                    data.normalHeight = Math.min(400, maxHeight);
-                } else {
-                    data.normalHeight = naturalHeight;
-                }
-
-                /*
-                 * 최종 정상 높이 확정
-                 */
-                $dialog.css({
-                    height:data.normalHeight + 'px',
-                    transform:'translate3d(0,0,0)'
+                $('.JS-layerOpen2').off('click.layer').on('click.layer', function () {
+                    var id = $(this).attr('aria-controls');
+                    self.open(id, { closePrevious: false });
                 });
 
-                $body.css({
-                    height:'100%'
+                $('.JS-layerOpen2-closePrevious').off('click.layer').on('click.layer', function () {
+                    var id = $(this).attr('aria-controls');
+                    self.open(id, { closePrevious: true });
                 });
 
-                requestAnimationFrame(function() {
-                    self.checkScroll(data);
-
-                    if (typeof callback === 'function') {
-                        callback();
-                    }
+                $('dialog .close').off('click.layer').on('click.layer', function () {
+                    var $dialog = $(this).closest('dialog');
+                    self.close($dialog.attr('id'));
                 });
-            });
-        });
-    },
 
-    open: function(id, options) {
-        var self = this;
-        var data = self.obj[id];
+                $('.close33').off('click.layer').on('click.layer', function () {
+                    var $dialog = $(this).closest('dialog');
+                    self.close($dialog.attr('id'));
+                });
 
-        if (!data) return;
+                $('.close44').off('click.layer').on('click.layer', function () {
+                    self.close('all');
+                });
 
-        options = options || {};
+                $('dialog').off('click.layer').on('click.layer', function (e) {
+                    if (e.target === this) self.close(this.id);
+                });
 
-        if (options.closePrevious && self.stack.length) {
-            self.removePrevious();
-        }
+                $('dialog').off('cancel.layer').on('cancel.layer', function (e) {
+                    e.preventDefault();
+                    self.close(this.id);
+                });
 
-        data.currentTarget = document.activeElement;
+                /* Touch Drag */
+                $(document).off('touchstart.layer', '.touch').on('touchstart.layer', '.touch', function (e) {
+                    var $touch = $(this);
+                    var $dialog = $touch.closest('dialog');
+                    var id = $dialog.attr('id');
+                    var data = self.obj[id];
 
-        if (!data.$dialog[0].open) {
-            data.$dialog[0].showModal();
-        }
+                    if (!$dialog.hasClass('is_current') || !data) return;
 
-        data.$dialog
-            .removeClass('is_background')
-            .removeClass('is_current')
-            .removeAttr('aria-hidden')
-            .prop('inert', false)
-            .css({
-                height:'',
-                transform:'translate3d(0,100%,0)'
-            });
+                    var startY = e.originalEvent.touches[0].clientY;
+                    var startHeight = $dialog.outerHeight();
+                    var normalHeight = data.normalHeight || startHeight;
+                    var dragY = 0;
+                    var maxHeight = window.innerHeight;
 
-        self.setNormalHeight(data, function() {
-            /*
-             * 높이는 이미 확정되어 있음
-             * transform은 열림 애니메이션에만 사용
-             */
-            data.$dialog.css({
-                transform:'translate3d(0,100%,0)'
-            });
+                    $dialog.addClass('is_dragging');
 
-            requestAnimationFrame(function() {
-                data.$dialog.addClass('is_current');
+                    $(document).off('touchmove.layerDrag touchend.layerDrag touchcancel.layerDrag');
 
-                requestAnimationFrame(function() {
-                    data.$dialog.css({
-                        transform:'translate3d(0,0,0)'
+                    $(document).on('touchmove.layerDrag', function (e) {
+                        var currentY = e.originalEvent.touches[0].clientY;
+                        dragY = currentY - startY;
+
+                        if (dragY < 0) {
+                            if (!data.hasScroll) return;
+
+                            var currentHeight = startHeight - dragY;
+                            currentHeight = Math.min(currentHeight, maxHeight);
+                            $dialog.css({
+                                'height': currentHeight + 'px',
+                                'transform': 'translateY(0)'
+                            });
+                        } else {
+                            $dialog.css({
+                                'height': startHeight + 'px',
+                                'transform': 'translateY(' + dragY + 'px)'
+                            });
+                        }
+
+                        if (e.cancelable) e.preventDefault();
                     });
 
-                    if (self.stack.indexOf(id) === -1) {
-                        self.stack.push(id);
-                    }
+                    $(document).on('touchend.layerDrag touchcancel.layerDrag', function () {
+                        $(document).off('touchmove.layerDrag touchend.layerDrag touchcancel.layerDrag');
 
-                    self.backgroundCurrent();
+                        $dialog.removeClass('is_dragging');
 
-                    if (typeof options.onOpen === 'function') {
-                        options.onOpen.call(data.$dialog[0]);
-                    }
+                        // 1. 풀 화면 상태(90% 이상)
+                        if (startHeight >= maxHeight * 0.9) {
+                            if (dragY > 80) {
+                                $dialog.css({
+                                    'height': normalHeight + 'px',
+                                    'transform': ''
+                                });
+                            } else {
+                                $dialog.css({
+                                    'height': '100dvh',
+                                    'transform': ''
+                                });
+                            }
+                            return;
+                        }
 
-                    var $focus = data.$dialog
-                        .find('[autofocus]:visible')
-                        .first();
-
-                    if (!$focus.length) {
-                        $focus = data.$dialog
-                            .find('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
-                            .filter(':visible')
-                            .first();
-                    }
-
-                    if ($focus.length) {
-                        setTimeout(function() {
-                            $focus.trigger('focus');
-                        }, 0);
-                    }
+                        // 2. 중간 높이 상태
+                        if (dragY > 80) {
+                            self.close(id);
+                        } else if (dragY < -80 && data.hasScroll) {
+                            $dialog.css({
+                                'height': '100dvh',
+                                'transform': ''
+                            });
+                        } else {
+                            $dialog.css({
+                                'height': normalHeight + 'px',
+                                'transform': ''
+                            });
+                        }
+                    });
                 });
-            });
-        });
-    },
+            },
 
-    backgroundCurrent: function() {
-        var self = this;
+            add: function (id, options) {
+                var $dialog = $('#' + id);
+                if (!$dialog.length) return null;
 
-        $.each(self.stack, function(index, id) {
-            var data = self.obj[id];
+                if (this.obj[id]) {
+                    this.obj[id].options = options || {};
+                    return this.obj[id];
+                }
 
-            if (!data) return;
+                var data = {
+                    id: id,
+                    $dialog: $dialog,
+                    $focus: $dialog.find('.focus').first(),
+                    currentTarget: null,
+                    normalHeight: null,
+                    hasScroll: false,
+                    options: options || {}
+                };
 
-            if (index === self.stack.length - 1) {
+                this.obj[id] = data;
+                return data;
+            },
+
+            checkScroll: function (data) {
+                var $over = data.$dialog.find('.over');
+                if (!$over.length) return false;
+
+                var hasScroll = $over[0].scrollHeight > $over[0].clientHeight;
+                data.hasScroll = hasScroll;
+                return hasScroll;
+            },
+
+            setNormalHeight: function (data) {
+                var self = this;
+                var $dialog = data.$dialog;
+
+                $dialog.css('height', 'auto');
+
+                requestAnimationFrame(function () {
+                    var contentHeight = $dialog.outerHeight();
+                    var maxHeight = window.innerHeight;
+                    var targetHeight = Math.min(300, maxHeight);
+
+                    $dialog.css('height', targetHeight + 'px');
+
+                    requestAnimationFrame(function () {
+                        var hasScroll = self.checkScroll(data);
+
+                        if (hasScroll) {
+                            data.normalHeight = targetHeight;
+                        } else {
+                            if (contentHeight < targetHeight) {
+                                data.normalHeight = contentHeight;
+                                $dialog.css('height', contentHeight + 'px');
+                            } else {
+                                data.normalHeight = targetHeight;
+                            }
+                        }
+                    });
+                });
+            },
+
+            open: function (id, options) {
+                var self = this;
+                var trigger = document.activeElement;
+
+                options = $.extend({
+                    closePrevious: false,
+                    onOpen: null,
+                    onClose: null
+                }, options || {});
+
+                var data = this.add(id, options);
+                if (!data) return;
+
+                data.currentTarget = trigger;
+
+                if (options.closePrevious) {
+                    this.removePrevious();
+                } else {
+                    this.backgroundCurrent();
+                }
+
+                this.stack.push(id);
+
+                var dialog = data.$dialog[0];
+
+                // 1. 초기 스타일 설정 (transform 시작점 보장)
                 data.$dialog
                     .removeClass('is_background')
                     .removeAttr('aria-hidden')
-                    .prop('inert', false);
-            } else {
-                data.$dialog
+                    .prop('inert', false)
+                    .css('transform', '');
+
+                // 2. dialog.showModal() 호출
+                if (!dialog.open) {
+                    dialog.showModal();
+                }
+
+                this.setNormalHeight(data);
+
+                // 3. iOS Safari 모션 씹힘 해결: requestAnimationFrame으로 렌더링 1프레임 지연 후 활성화 클래스 추가
+                requestAnimationFrame(function () {
+                    requestAnimationFrame(function () {
+                        data.$dialog.addClass('is_current');
+                    });
+                });
+
+                data.$focus.attr('tabindex', '-1');
+
+                setTimeout(function () {
+                    if (data.$focus.length) {
+                        data.$focus.focus();
+                    } else {
+                        data.$dialog.focus();
+                    }
+                }, 0);
+
+                if (typeof options.onOpen === 'function') {
+                    options.onOpen({
+                        id: id,
+                        modal: data.$dialog[0],
+                        $modal: data.$dialog,
+                        trigger: data.currentTarget,
+                        stack: this.stack.slice()
+                    });
+                }
+            },
+
+            backgroundCurrent: function () {
+                if (!this.stack.length) return;
+
+                var currentId = this.stack[this.stack.length - 1];
+                var current = this.obj[currentId];
+                if (!current) return;
+
+                current.$dialog
+                    .removeClass('is_current')
                     .addClass('is_background')
                     .attr('aria-hidden', 'true')
                     .prop('inert', true);
-            }
-        });
-    },
+            },
 
-    removePrevious: function() {
-        var self = this;
+            removePrevious: function () {
+                if (!this.stack.length) return;
 
-        if (!self.stack.length) return;
+                var previousId = this.stack[this.stack.length - 1];
+                var previous = this.obj[previousId];
+                if (!previous) return;
 
-        var previousId = self.stack[self.stack.length - 1];
-        var data = self.obj[previousId];
-
-        if (!data) return;
-
-        data.$dialog
-            .removeClass('is_current')
-            .removeClass('is_background')
-            .attr('aria-hidden', 'true')
-            .prop('inert', true)
-            .css({
-                transform:'',
-                height:''
-            });
-
-        if (data.$dialog[0].open) {
-            data.$dialog[0].close();
-        }
-
-        self.stack.pop();
-
-        if (typeof data.options.onClose === 'function') {
-            data.options.onClose.call(data.$dialog[0]);
-        }
-    },
-
-    close: function(id, skipRestore) {
-        var self = this;
-
-        if (id === 'all') {
-            var restoreTarget = null;
-
-            if (self.stack.length) {
-                var firstId = self.stack[0];
-                var firstData = self.obj[firstId];
-
-                if (firstData) {
-                    restoreTarget = firstData.currentTarget;
+                if (previous.$dialog[0].open) {
+                    previous.$dialog[0].close();
                 }
-            }
 
-            while (self.stack.length) {
-                var closeId = self.stack.pop();
-                var closeData = self.obj[closeId];
+                previous.$dialog
+                    .removeClass('is_current is_background')
+                    .removeAttr('aria-hidden')
+                    .prop('inert', false)
+                    .css('transform', '')
+                    .css('height', '');
 
-                if (!closeData) continue;
+                this.stack.pop();
 
-                closeData.$dialog
-                    .removeClass('is_current')
-                    .removeClass('is_background')
-                    .attr('aria-hidden', 'true')
-                    .prop('inert', true)
-                    .css({
-                        transform:'',
-                        height:''
+                if (typeof previous.options.onClose === 'function') {
+                    previous.options.onClose({
+                        id: previousId,
+                        modal: previous.$dialog[0],
+                        $modal: previous.$dialog,
+                        trigger: previous.currentTarget,
+                        stack: this.stack.slice()
+                    });
+                }
+
+                delete this.obj[previousId];
+            },
+
+            close: function (id, skipRestore) {
+                var self = this;
+
+                if (id === 'all') {
+                    if (!this.stack.length) return;
+
+                    var firstId = this.stack[0];
+                    var firstData = this.obj[firstId];
+                    var ids = this.stack.slice().reverse();
+
+                    $.each(ids, function (_, modalId) {
+                        self.close(modalId, true);
                     });
 
-                if (closeData.$dialog[0].open) {
-                    closeData.$dialog[0].close();
+                    if (firstData && firstData.currentTarget && document.body.contains(firstData.currentTarget)) {
+                        setTimeout(function () {
+                            $(firstData.currentTarget).focus();
+                        }, 0);
+                    }
+                    return;
                 }
 
-                if (typeof closeData.options.onClose === 'function') {
-                    closeData.options.onClose.call(closeData.$dialog[0]);
-                }
-            }
+                var data = this.obj[id];
+                var index = this.stack.indexOf(id);
 
-            if (restoreTarget && $(restoreTarget).length) {
-                setTimeout(function() {
-                    $(restoreTarget).trigger('focus');
+                if (!data) return;
+                if (index === -1) return;
+                if (index !== this.stack.length - 1) return;
+
+                var callbackData = {
+                    id: id,
+                    modal: data.$dialog[0],
+                    $modal: data.$dialog,
+                    trigger: data.currentTarget,
+                    stack: this.stack.slice()
+                };
+
+                data.$dialog
+                    .removeClass('is_current is_background')
+                    .removeAttr('aria-hidden')
+                    .prop('inert', false)
+                    .css('transform', '');
+
+                setTimeout(function () {
+                    if (data.$dialog[0].open) {
+                        data.$dialog[0].close();
+                    }
+                    data.$dialog.css('height', '');
+                }, 300);
+
+                this.stack.pop();
+
+                if (typeof data.options.onClose === 'function') {
+                    data.options.onClose(callbackData);
+                }
+
+                delete this.obj[id];
+
+                if (skipRestore) return;
+
+                if (this.stack.length) {
+                    this.restorePrevious();
+                } else if (data.currentTarget && document.body.contains(data.currentTarget)) {
+                    setTimeout(function () {
+                        $(data.currentTarget).focus();
+                    }, 0);
+                }
+            },
+
+            restorePrevious: function () {
+                if (!this.stack.length) return;
+
+                var previousId = this.stack[this.stack.length - 1];
+                var previous = this.obj[previousId];
+                if (!previous) return;
+
+                if (!previous.$dialog[0].open) {
+                    previous.$dialog[0].showModal();
+                }
+
+                if (previous.normalHeight) {
+                    previous.$dialog.css('height', previous.normalHeight + 'px');
+                } else {
+                    this.setNormalHeight(previous);
+                }
+
+                requestAnimationFrame(function () {
+                    requestAnimationFrame(function () {
+                        previous.$dialog
+                            .removeClass('is_background')
+                            .addClass('is_current')
+                            .removeAttr('aria-hidden')
+                            .prop('inert', false)
+                            .css('transform', '');
+                    });
+                });
+
+                setTimeout(function () {
+                    if (previous.$focus.length) {
+                        previous.$focus.focus();
+                    }
                 }, 0);
             }
+        };
 
-            return;
-        }
+        layerOpen.init();
 
-        var index = self.stack.indexOf(id);
-
-        if (index === -1) return;
-
-        var data = self.obj[id];
-
-        if (!data) return;
-
-        self.stack.splice(index, 1);
-
-        data.$dialog.removeClass('is_current');
-
-        setTimeout(function() {
-            data.$dialog
-                .removeClass('is_background')
-                .attr('aria-hidden', 'true')
-                .prop('inert', true)
-                .css({
-                    transform:'',
-                    height:''
-                });
-
-            if (data.$dialog[0].open) {
-                data.$dialog[0].close();
-            }
-
-            if (typeof data.options.onClose === 'function') {
-                data.options.onClose.call(data.$dialog[0]);
-            }
-
-            if (!skipRestore) {
-                self.restorePrevious();
-            }
-        }, 300);
-    },
-
-    restorePrevious: function() {
-        var self = this;
-
-        if (!self.stack.length) return;
-
-        var id = self.stack[self.stack.length - 1];
-        var data = self.obj[id];
-
-        if (!data) return;
-
-        if (!data.$dialog[0].open) {
-            data.$dialog[0].showModal();
-        }
-
-        /*
-         * 이전 모달은 높이를 확실하게 지정하고
-         * transform은 0으로 고정
-         */
-        data.$dialog
-            .removeClass('is_background')
-            .removeAttr('aria-hidden')
-            .prop('inert', false)
-            .css({
-                height:data.normalHeight + 'px',
-                transform:'translate3d(0,0,0)'
-            });
-
-        data.$dialog.find('.layer_body').css({
-            height:'100%'
-        });
-
-        data.$dialog.addClass('is_current');
-
-        self.backgroundCurrent();
-
-        setTimeout(function() {
-            var $focus = data.$dialog
-                .find('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
-                .filter(':visible')
-                .first();
-
-            if ($focus.length) {
-                $focus.trigger('focus');
-            }
-        }, 0);
-    },
-
-    touchEvent: function() {
-        var self = this;
-
-        var startY = 0;
-        var currentY = 0;
-        var dragging = false;
-        var currentId = null;
-        var startHeight = 0;
-        var startTop = 0;
-        var currentHeight = 0;
-
-        $(document).on('touchstart', '.layerComm .touch', function(e) {
-            var touch = e.originalEvent.touches[0];
-            var $dialog = $(this).closest('.layerComm');
-            var id = $dialog.attr('id');
-            var data = self.obj[id];
-
-            if (!data) return;
-
-            startY = touch.clientY;
-            currentY = startY;
-            dragging = true;
-            currentId = id;
-
-            startHeight = $dialog.outerHeight();
-            currentHeight = startHeight;
-
-            /*
-             * 현재 dialog의 bottom 위치를 기준으로
-             * height만 변경한다.
-             */
-            startTop = window.innerHeight - startHeight;
-
-            $dialog
-                .addClass('is_dragging')
-                .css({
-                    transform:'translate3d(0,0,0)'
-                });
-        });
-
-        $(document).on('touchmove', '.layerComm .touch', function(e) {
-            if (!dragging || currentId === null) return;
-
-            var touch = e.originalEvent.touches[0];
-            var $dialog = $('#' + currentId);
-            var data = self.obj[currentId];
-
-            if (!$dialog.length || !data) return;
-
-            currentY = touch.clientY;
-
-            var moveY = currentY - startY;
-
-            /*
-             * 위로 드래그하면 높이가 커지고
-             * 아래로 드래그하면 높이가 작아진다.
-             */
-            currentHeight = startHeight - moveY;
-
-            var minHeight = data.normalHeight;
-            var maxHeight = window.innerHeight;
-
-            /*
-             * 최소 높이
-             */
-            if (currentHeight < minHeight) {
-                currentHeight = minHeight;
-            }
-
-            /*
-             * 최대 높이
-             */
-            if (currentHeight > maxHeight) {
-                currentHeight = maxHeight;
-            }
-
-            /*
-             * 드래그 중에는 height만 변경
-             * transform은 사용하지 않는다.
-             */
-            $dialog.css({
-                height:currentHeight + 'px',
-                transform:'translate3d(0,0,0)'
-            });
-
-            if (e.cancelable) {
-                e.preventDefault();
-            }
-        });
-
-        $(document).on('touchend touchcancel', '.layerComm .touch', function() {
-            if (!dragging || currentId === null) return;
-
-            var id = currentId;
-            var $dialog = $('#' + id);
-            var data = self.obj[id];
-
-            dragging = false;
-            currentId = null;
-
-            if (!$dialog.length || !data) return;
-
-            $dialog.removeClass('is_dragging');
-
-            var moveY = currentY - startY;
-            var maxHeight = window.innerHeight;
-
-            /*
-             * 정상 높이에서 아래로 80px 이상 내려가면 닫기
-             */
-            if (startHeight <= data.normalHeight + 1 && moveY > 80) {
-                /*
-                 * 닫기 전에 현재 transform은 0
-                 */
-                $dialog.css({
-                    transform:'translate3d(0,0,0)'
-                });
-
-                self.close(id);
-                return;
-            }
-
-            /*
-             * 정상 높이에서 위로 80px 이상 올렸으면
-             * 전체 화면으로 확장
-             */
-            if (startHeight <= data.normalHeight + 1 && moveY < -80) {
-                $dialog.css({
-                    height:'100dvh',
-                    transform:'translate3d(0,0,0)'
-                });
-
-                return;
-            }
-
-            /*
-             * 전체 화면에서 아래로 80px 이상 내렸으면
-             * 정상 높이로 복귀
-             */
-            if (startHeight >= maxHeight * 0.9 && moveY > 80) {
-                $dialog.css({
-                    height:data.normalHeight + 'px',
-                    transform:'translate3d(0,0,0)'
-                });
-
-                return;
-            }
-
-            /*
-             * 전체 화면에서 작은 움직임이면
-             * 전체 화면 유지
-             */
-            if (startHeight >= maxHeight * 0.9) {
-                $dialog.css({
-                    height:'100dvh',
-                    transform:'translate3d(0,0,0)'
-                });
-
-                return;
-            }
-
-            /*
-             * 정상 높이에서 작은 움직임이면
-             * 정상 높이로 복귀
-             */
-            $dialog.css({
-                height:data.normalHeight + 'px',
-                transform:'translate3d(0,0,0)'
+        $('#test2').on('click', function () {
+            layerOpen.open('layer1', {
+                closePrevious: true,
+                onOpen: function (data) {
+                    console.log('열기 콜백', data);
+                },
+                onClose: function (data) {
+                    console.log('닫기 콜백', data);
+                }
             });
         });
-    }
-};
-
-$(function() {
-    layerOpen.init();
-
-    $('#test2').on('click', function() {
-        layerOpen.open('layer1', {
-            closePrevious:true,
-            onOpen:function() {
-                console.log('layer1 open');
-            },
-            onClose:function() {
-                console.log('layer1 close');
-            }
-        });
-    });
-
-    $('#test3').on('click', function() {
-        layerOpen.open('layer1');
-    });
-});
-</script>
-
+    </script>
 </body>
+
 </html>
