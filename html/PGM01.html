@@ -47,7 +47,6 @@
             max-height: 100dvh;
             padding: 0;
             transform: translateY(100%);
-            /* transform만 애니메이션하도록 지정하여 높이 변경과 충돌 방지 */
             transition: transform .3s cubic-bezier(0.25, 1, 0.5, 1), height .3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
@@ -111,17 +110,10 @@
         <div class="layer_body">
             <button type="button" class="touch">☰ 터치해서 움직이기</button>
             <div class="over">
-                <p>세번째 레이어</p>
-                <p>세번째 레이어</p>
-                <p>세번째 레이어</p>
-                <p>세번째 레이어</p>
-                <p>세번째 레이어</p>
-                <p>세번째 레이어</p>
-                <p>세번째 레이어</p>
-                <p>세번째 레이어</p>
-                <p>세번째 레이어</p>
+                <p>세번째 레이어 (스크롤 O)</p>
                 <button type="button" class="close44">모든 레이어 한번에 닫기</button>
                 <button type="button" class="close">닫기</button>
+                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
             </div>
         </div>
     </dialog>
@@ -130,7 +122,7 @@
         <div class="layer_body">
             <button type="button" class="touch">☰ 터치해서 움직이기</button>
             <div class="over">
-                <p>두번째 레이어</p>
+                <p>두번째 레이어 (스크롤 X - 위로 드래그 불가)</p>
                 <button type="button" class="JS-layerOpen2" aria-controls="layer3">세번째 레이어 열기</button>
                 <button type="button" class="close33">클릭 이벤트로 닫기</button>
                 <button type="button" class="close">닫기</button>
@@ -142,19 +134,12 @@
         <div class="layer_body">
             <button type="button" class="touch">☰ 터치해서 움직이기</button>
             <div class="over">
-                <p>첫번째 레이어</p>
+                <p>첫번째 레이어11111(스크롤 O)</p>
                 <button type="button" class="JS-layerOpen2" aria-controls="layer2">두번째 레이어 열기</button>
                 <button type="button" class="JS-layerOpen2-closePrevious" aria-controls="layer2">첫번째 닫고 두번째 열기</button>
                 <button type="button" class="close33">클릭 이벤트로 닫기</button>
                 <button type="button" class="close">닫기</button>
-                <div>
-					스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤
-					공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
-					스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤
-					공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
-					스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤
-					공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
-				</div>
+                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
             </div>
         </div>
     </dialog>
@@ -199,10 +184,7 @@
                     self.close(this.id);
                 });
 
-                /* =====================================================
-                   Touch Drag (수정된 로직)
-                   : 높이(height) 조절 대신 translateY 이동 방식을 병행하여 자연스럽게 처리
-                ===================================================== */
+                /* Touch Drag */
                 $(document).off('touchstart.layer', '.touch').on('touchstart.layer', '.touch', function (e) {
                     var $touch = $(this);
                     var $dialog = $touch.closest('dialog');
@@ -226,7 +208,11 @@
                         dragY = currentY - startY;
 
                         if (dragY < 0) {
-                            // [위로 드래그]: 높이(height)를 늘려 확장
+                            // [위로 드래그]: over 영역에 스크롤이 없는 모달이면 위로 늘리지 않음
+                            if (!data.hasScroll) {
+                                return;
+                            }
+
                             var currentHeight = startHeight - dragY;
                             currentHeight = Math.min(currentHeight, maxHeight);
                             $dialog.css({
@@ -234,7 +220,7 @@
                                 'transform': 'translateY(0)'
                             });
                         } else {
-                            // [아래로 드래그]: 높이는 고정하고 위치(translateY)를 내려서 닫힘 느낌 연출
+                            // [아래로 드래그]: 스크롤 여부와 상관없이 닫기는 가능하도록 수행
                             $dialog.css({
                                 'height': startHeight + 'px',
                                 'transform': 'translateY(' + dragY + 'px)'
@@ -249,7 +235,6 @@
 
                         $dialog.removeClass('is_dragging');
 
-                        // 1. 전체 화면 모드 근처에서 드래그 시작한 경우
                         if (startHeight >= maxHeight * 0.9) {
                             if (dragY > 100) {
                                 $dialog.css({
@@ -265,18 +250,15 @@
                             return;
                         }
 
-                        // 2. 기본 높이 상태에서 시작한 경우
                         if (dragY > 80) {
-                            // 아래로 80px 이상 내리면 모달 닫기
                             self.close(id);
-                        } else if (dragY < -80) {
-                            // 위로 80px 이상 올리면 전체 화면 복귀
+                        } else if (dragY < -80 && data.hasScroll) {
+                            // 스크롤이 있는 경우에만 위로 끝까지 펼치기 허용
                             $dialog.css({
                                 'height': '100dvh',
                                 'transform': ''
                             });
                         } else {
-                            // 복귀
                             $dialog.css({
                                 'height': normalHeight + 'px',
                                 'transform': ''
@@ -314,7 +296,6 @@
                 if (!$over.length) return false;
 
                 var hasScroll = $over[0].scrollHeight > $over[0].clientHeight;
-
                 data.hasScroll = hasScroll;
                 return hasScroll;
             },
@@ -328,22 +309,22 @@
                 requestAnimationFrame(function () {
                     var contentHeight = $dialog.outerHeight();
                     var maxHeight = window.innerHeight;
+                    var targetHeight = Math.min(300, maxHeight);
 
-                    if (contentHeight > maxHeight) {
-                        contentHeight = maxHeight;
-                    }
-
-                    $dialog.css('height', contentHeight + 'px');
+                    $dialog.css('height', targetHeight + 'px');
 
                     requestAnimationFrame(function () {
                         var hasScroll = self.checkScroll(data);
 
                         if (hasScroll) {
-                            data.normalHeight = Math.min(400, maxHeight);
-                            $dialog.css('height', data.normalHeight + 'px');
+                            data.normalHeight = targetHeight;
                         } else {
-                            data.normalHeight = contentHeight;
-                            $dialog.css('height', data.normalHeight + 'px');
+                            if (contentHeight < targetHeight) {
+                                data.normalHeight = contentHeight;
+                                $dialog.css('height', contentHeight + 'px');
+                            } else {
+                                data.normalHeight = targetHeight;
+                            }
                         }
                     });
                 });
@@ -492,18 +473,16 @@
                     stack: this.stack.slice()
                 };
 
-                // 닫힐 때 height 조절을 하지 않고, is_current만 제거하여 transform: translateY(100%) 로 내려가도록 처리
                 data.$dialog
                     .removeClass('is_current is_background')
                     .removeAttr('aria-hidden')
                     .prop('inert', false)
-                    .css('transform', ''); // inline transform 초기화
+                    .css('transform', '');
 
                 setTimeout(function () {
                     if (data.$dialog[0].open) {
                         data.$dialog[0].close();
                     }
-                    // 닫는 애니메이션이 끝난 후 height를 초기화
                     data.$dialog.css('height', '');
                 }, 300);
 
@@ -571,7 +550,6 @@
                 }
             });
         });
-
     </script>
 </body>
 
