@@ -1,5 +1,7 @@
+```html
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,7 +45,7 @@
         .layerComm.Add_type_bottom {
             inset: auto 0 0 0;
             width: 100%;
-            /* max-height: 100dvh; */
+            max-height: 100dvh;
             padding: 0;
             transform: translateY(100%);
             transition: transform .3s cubic-bezier(0.25, 1, 0.5, 1), height .3s cubic-bezier(0.25, 1, 0.5, 1);
@@ -102,7 +104,7 @@
 
 <body>
 
-    <button type="button" id="test2">클릭 이벤트로 5555</button>
+    <button type="button" id="test2">클릭 이벤트로 열기2222</button>
     <button type="button" id="test3" class="JS-layerOpen2" aria-controls="layer1">기본 클래스로 열기</button>
 
     <dialog id="layer3" class="layerComm Add_type_bottom">
@@ -213,24 +215,28 @@
                         var currentY = e.originalEvent.touches[0].clientY;
                         dragY = currentY - startY;
 
-                        if (dragY < 0) {
-                            if (!data.hasScroll) return;
-
-                            var currentHeight = startHeight - dragY;
-                            currentHeight = Math.min(currentHeight, maxHeight);
-
-                            $dialog.css({
-                                height: currentHeight + 'px',
-                                transform: 'translateY(0)'
-                            });
-                        } else {
-                            $dialog.css({
-                                height: startHeight + 'px',
-                                transform: 'translateY(' + dragY + 'px)'
-                            });
+                        /*
+                         * 스크롤이 없는 모달은 위로 이동하지 않음
+                         */
+                        if (dragY < 0 && !data.hasScroll) {
+                            return;
                         }
 
-                        if (e.cancelable) e.preventDefault();
+                        /*
+                         * 드래그 중에는 height를 변경하지 않고
+                         * transform만 변경
+                         *
+                         * translate3d를 사용해서 iOS Safari에서
+                         * GPU 합성 영역으로 처리하도록 함
+                         */
+                        $dialog.css(
+                            'transform',
+                            'translate3d(0,' + dragY + 'px,0)'
+                        );
+
+                        if (e.cancelable) {
+                            e.preventDefault();
+                        }
                     });
 
                     $(document).on('touchend.layerDrag touchcancel.layerDrag', function () {
@@ -238,34 +244,45 @@
 
                         $dialog.removeClass('is_dragging');
 
-                        /* 풀 화면 상태 */
+                        /*
+                         * 풀 화면 상태
+                         */
                         if (startHeight >= maxHeight * 0.9) {
                             if (dragY > 80) {
                                 $dialog.css({
                                     height: normalHeight + 'px',
-                                    transform: 'translateY(0)'
+                                    transform: 'translate3d(0,0,0)'
                                 });
                             } else {
                                 $dialog.css({
                                     height: '100dvh',
-                                    transform: 'translateY(0)'
+                                    transform: 'translate3d(0,0,0)'
                                 });
                             }
+
                             return;
                         }
 
-                        /* 일반 높이 상태 */
+                        /*
+                         * 일반 높이 상태
+                         */
                         if (dragY > 80) {
                             self.close(id);
                         } else if (dragY < -80 && data.hasScroll) {
+                            /*
+                             * 드래그가 끝났을 때만 풀 화면 높이로 변경
+                             */
                             $dialog.css({
                                 height: '100dvh',
-                                transform: 'translateY(0)'
+                                transform: 'translate3d(0,0,0)'
                             });
                         } else {
+                            /*
+                             * 원래 높이로 복귀
+                             */
                             $dialog.css({
                                 height: normalHeight + 'px',
-                                transform: 'translateY(0)'
+                                transform: 'translate3d(0,0,0)'
                             });
                         }
                     });
@@ -274,6 +291,7 @@
 
             add: function (id, options) {
                 var $dialog = $('#' + id);
+
                 if (!$dialog.length) return null;
 
                 if (this.obj[id]) {
@@ -292,14 +310,17 @@
                 };
 
                 this.obj[id] = data;
+
                 return data;
             },
 
             checkScroll: function (data) {
                 var $over = data.$dialog.find('.over');
+
                 if (!$over.length) return false;
 
                 var hasScroll = $over[0].scrollHeight > $over[0].clientHeight;
+
                 data.hasScroll = hasScroll;
 
                 return hasScroll;
@@ -310,18 +331,21 @@
                 var $dialog = data.$dialog;
                 var $body = $dialog.find('.layer_body');
 
-                /* 자연 높이 측정을 위해 잠시 height 제한 제거 */
+                /*
+                 * 자연 높이 측정을 위해 height 제한 제거
+                 */
                 $dialog.css('height', 'auto');
                 $body.css('height', 'auto');
 
                 requestAnimationFrame(function () {
                     var contentHeight = $dialog.outerHeight();
                     var maxHeight = window.innerHeight;
-                    var targetHeight = Math.min(400, maxHeight);
-
-                    /* 자연 높이가 화면보다 크면 일단 화면 높이까지 제한 */
+                    var targetHeight = Math.min(300, maxHeight);
                     var measureHeight = Math.min(contentHeight, maxHeight);
 
+                    /*
+                     * 실제 스크롤 여부를 확인하기 위한 높이 적용
+                     */
                     $dialog.css('height', measureHeight + 'px');
                     $body.css('height', '100%');
 
@@ -336,7 +360,6 @@
                             $dialog.css('height', contentHeight + 'px');
                         }
 
-                        /* 높이 계산이 완전히 끝난 후 다음 작업 실행 */
                         requestAnimationFrame(function () {
                             if (typeof callback === 'function') {
                                 callback();
@@ -357,6 +380,7 @@
                 }, options || {});
 
                 var data = this.add(id, options);
+
                 if (!data) return;
 
                 data.currentTarget = trigger;
@@ -373,7 +397,7 @@
 
                 /*
                  * iOS Safari 대응
-                 * 열기 전에 transform 시작점을 인라인으로 확정한다.
+                 * 모달을 열기 전에 시작 위치를 명확하게 지정
                  */
                 data.$dialog
                     .removeClass('is_current')
@@ -382,7 +406,7 @@
                     .prop('inert', false)
                     .css({
                         height: '',
-                        transform: 'translateY(100%)'
+                        transform: 'translate3d(0,100%,0)'
                     });
 
                 if (!dialog.open) {
@@ -390,12 +414,11 @@
                 }
 
                 /*
-                 * 높이 계산이 완료된 다음에만 is_current를 적용한다.
-                 * 따라서 height:auto 상태가 사용자에게 보이는 것을 방지한다.
+                 * 높이 계산이 끝난 후 모달을 화면으로 이동
                  */
                 this.setNormalHeight(data, function () {
                     data.$dialog.css({
-                        transform: 'translateY(100%)'
+                        transform: 'translate3d(0,100%,0)'
                     });
 
                     requestAnimationFrame(function () {
@@ -403,7 +426,7 @@
 
                         requestAnimationFrame(function () {
                             data.$dialog.css({
-                                transform: 'translateY(0)'
+                                transform: 'translate3d(0,0,0)'
                             });
                         });
                     });
@@ -520,8 +543,8 @@
                 };
 
                 /*
-                 * 닫을 때는 transform을 제거하여
-                 * CSS의 translateY(100%)가 닫힘 위치가 되도록 한다.
+                 * 닫힐 때만 transform을 제거하여
+                 * CSS의 translateY(100%)를 사용
                  */
                 data.$dialog
                     .removeClass('is_current is_background')
@@ -570,14 +593,9 @@
                     previous.$dialog[0].showModal();
                 }
 
-                /*
-                 * 복원할 때도 먼저 transform 시작점을 확정한다.
-                 */
-                previous.$dialog
-                    .removeClass('is_current')
-                    .css({
-                        transform: 'translateY(0)'
-                    });
+                previous.$dialog.css({
+                    transform: 'translate3d(0,0,0)'
+                });
 
                 if (previous.normalHeight) {
                     previous.$dialog.css('height', previous.normalHeight + 'px');
@@ -588,7 +606,7 @@
                             .addClass('is_current')
                             .removeAttr('aria-hidden')
                             .prop('inert', false)
-                            .css('transform', 'translateY(0)');
+                            .css('transform', 'translate3d(0,0,0)');
                     });
                 } else {
                     this.setNormalHeight(previous, function () {
@@ -597,7 +615,7 @@
                             .addClass('is_current')
                             .removeAttr('aria-hidden')
                             .prop('inert', false)
-                            .css('transform', 'translateY(0)');
+                            .css('transform', 'translate3d(0,0,0)');
                     });
                 }
 
@@ -624,4 +642,6 @@
         });
     </script>
 </body>
+
 </html>
+```
