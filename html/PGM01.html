@@ -1,118 +1,483 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dialog Test</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dialog Touch Drag</title>
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<style>
+		* {
+			box-sizing: border-box
+		}
 
-<style>
-/* dialog */
-dialog {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: none;
-  border-radius: 8px;
-  padding: 20px;
-  background: #fff;
-  z-index: 10001;
-}
+		body {
+			margin: 0;
+			padding: 30px
+		}
 
-/* open 상태가 아닐 때만 숨기기 */
-dialog:not([open]) {
-  display: none;
-}
+		button {
+			padding: 10px;
+			border: 1px solid #000;
+			background: #fff
+		}
 
-dialog::backdrop {
-  background: rgba(0, 0, 0, .5);
-}
+		.layerComm {
+			overflow: hidden;
+			width: 100%;
+			max-width: none;
+			max-height: 100dvh;
+			border: 0;
+			background: transparent
+		}
 
-/* div layer */
-.layer-dim {
-  display: none;
-  position: fixed;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,.5);
-  z-index: 10000;
-}
-.layer-popup {
-  position: absolute;
-  left: 50%; top: 50%;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-}
-</style>
+		.layerComm::backdrop {
+			background: rgb(0, 0, 0, .4);
+			opacity: 0;
+			transition: opacity .2s
+		}
+
+		.layerComm.is_background {
+			pointer-events: none
+		}
+
+		.layerComm.Add_type_bottom {
+			inset: auto 0 0 0;
+			width: 100%;
+			height: 400px;
+			max-height: 100dvh;
+			padding: 0;
+			transform: translateY(100%);
+			transition: transform .3s, height .2s
+		}
+
+		.layerComm.Add_type_bottom.is_current {
+			transform: translateY(0);
+			pointer-events: auto
+		}
+
+		.layerComm.Add_type_bottom.is_current::backdrop {
+			opacity: 1
+		}
+
+		.layerComm .layer_body {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			height: 100%;
+			min-height: 0;
+			padding: 30px;
+			background: #fff;
+			border-radius: 20px 20px 0 0
+		}
+
+		.layerComm .over {
+			overflow-x: hidden;
+			overflow-y: auto;
+			flex: 1;
+			min-height: 0;
+			-webkit-overflow-scrolling: touch
+		}
+
+		.layerComm .touch {
+			display: block;
+			width: 100%;
+			margin-bottom: 20px;
+			touch-action: none;
+			user-select: none;
+			cursor: grab
+		}
+
+		.layerComm .touch:active {
+			cursor: grabbing
+		}
+
+		.layerComm.is_dragging {
+			transition: none !important
+		}
+
+		.layerComm button {
+			margin: 5px 0
+		}
+	</style>
 </head>
 
 <body>
-글글글글글글글글글글글글글글글글
 
-<input type="file" accept="image/*" capture="environment">
-  
-    <button type="button">버튼 포커스 테스트</button> <br>
-    <button type="button">버튼 포커스 테스트</button> <br>
-    <button type="button">버튼 포커스 테스트</button> <br>
-    <button type="button">버튼 포커스 테스트</button> <br>
-    <button type="button">버튼 포커스 테스트</button> <br>
-    <button type="button">버튼 포커스 테스트</button> <br>
-    <button type="button">버튼 포커스 테스트</button> <br>
-    글글글글글글글글글글글글글글글글글
-<!-- dialog -->
-<dialog id="dialogLayer">
-  <p>dialog 팝업입니다.</p>
-  <button class="dialog-close">닫기</button>
-</dialog>
+	<button type="button" id="test2">클릭 이벤트로 열기</button>
+	<button type="button" id="test3" class="JS-layerOpen2" aria-controls="layer1">기본 클래스로 열기</button>
 
-<!-- div 레이어 팝업 -->
-<div class="layer-dim" id="divLayer">
-  <div class="layer-popup">
-    <p>div 팝업입니다.</p>
-    <button class="div-close">닫기</button>
-  </div>
-</div>
+	<dialog id="layer3" class="layerComm Add_type_bottom">
+		<div class="layer_body">
+			<button type="button" class="touch">☰ 터치해서 움직이기</button>
+			<div class="over">
+				<p>세번째 레이어</p>
+				<button type="button" class="close44">모든 레이어 한번에 닫기</button>
+				<button type="button" class="close">닫기</button>
+			</div>
+		</div>
+	</dialog>
 
-<!-- buttons -->
-<button id="openDialog">dialog 열기</button>
-<button id="openDiv">div 레이어 열기</button>
+	<dialog id="layer2" class="layerComm Add_type_bottom">
+		<div class="layer_body">
+			<button type="button" class="touch">☰ 터치해서 움직이기</button>
+			<div class="over">
+				<p>두번째 레이어</p>
+				<button type="button" class="JS-layerOpen2" aria-controls="layer3">세번째 레이어 열기</button>
+				<button type="button" class="close33">클릭 이벤트로 닫기</button>
+				<button type="button" class="close">닫기</button>
+			</div>
+		</div>
+	</dialog>
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script>
-$(function() {
-  const dialog = document.getElementById("dialogLayer");
+	<dialog id="layer1" class="layerComm Add_type_bottom">
+		<div class="layer_body">
+			<button type="button" class="touch">☰ 터치해서 움직이기</button>
+			<div class="over">
+				<p>첫번째 레이어</p>
+				<button type="button" class="JS-layerOpen2" aria-controls="layer2">두번째 레이어 열기</button>
+				<button type="button" class="JS-layerOpen2-closePrevious" aria-controls="layer2">첫번째 닫고 두번째 열기</button>
+				<button type="button" class="close33">클릭 이벤트로 닫기</button>
+				<button type="button" class="close">닫기</button>
+				스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤
+				공간용<br><br>스크롤
+				공간용<br><br>스크롤 공간용
+			</div>
+		</div>
+	</dialog>
 
-  /** dialog 관리 **/
-  $("#openDialog").on("click", function() {
-    dialog.showModal();
-  });
-  $(".dialog-close").on("click", function() {
-    dialog.close();
-  });
-  // dialog 바깥 클릭 시 닫기
-  $("#dialogLayer").on("click", function(e) {
-    if (e.target === this) dialog.close();
-  });
+	<script>
+		var layerOpen = {
+			stack: [],
+			obj: {},
 
-  /** div layer 관리 **/
-  $("#openDiv").on("click", function() {
-    $("#divLayer").fadeIn(200);
-  });
-  $(".div-close, #divLayer").on("click", function(e) {
-    if (e.target === this) $("#divLayer").fadeOut(200);
-  });
+			init: function () {
+				var self = this;
 
-  /** ESC로 닫기 (공통) **/
-  $(document).on("keydown", function(e) {
-    if (e.key === "Escape") {
-      if (dialog.open) dialog.close();
-      $("#divLayer").fadeOut(200);
-    }
-  });
-});
-</script>
+				$('.JS-layerOpen2').off('click.layer').on('click.layer', function () {
+					var id = $(this).attr('aria-controls');
+					self.open(id, { closePrevious: false });
+				});
 
+				$('.JS-layerOpen2-closePrevious').off('click.layer').on('click.layer', function () {
+					var id = $(this).attr('aria-controls');
+					self.open(id, { closePrevious: true });
+				});
+
+				$('dialog .close').off('click.layer').on('click.layer', function () {
+					var $dialog = $(this).closest('dialog');
+					self.close($dialog.attr('id'));
+				});
+
+				/* 현재 레이어만 닫기 */
+				$('.close33').off('click.layer').on('click.layer', function () {
+					var $dialog = $(this).closest('dialog');
+					self.close($dialog.attr('id'));
+				});
+
+				/* 모든 레이어 닫기 */
+				$('.close44').off('click.layer').on('click.layer', function () {
+					self.close('all');
+				});
+
+				$('dialog').off('click.layer').on('click.layer', function (e) {
+					if (e.target === this) {
+						self.close(this.id);
+					}
+				});
+
+				$('dialog').off('cancel.layer').on('cancel.layer', function (e) {
+					e.preventDefault();
+					self.close(this.id);
+				});
+
+				/* Touch Drag */
+				$('.touch').off('touchstart.layer').on('touchstart.layer', function (e) {
+					var $touch = $(this);
+					var $dialog = $touch.closest('dialog');
+					if (!$dialog.hasClass('is_current')) return;
+
+					var startY = e.originalEvent.touches[0].clientY;
+					var startHeight = $dialog.outerHeight();
+					var currentHeight = startHeight;
+					var dragY = 0;
+					var maxHeight = window.innerHeight;
+					var normalHeight = 400;
+
+					$dialog.addClass('is_dragging');
+
+					$touch.off('touchmove.layer').on('touchmove.layer', function (e) {
+						var currentY = e.originalEvent.touches[0].clientY;
+						dragY = currentY - startY;
+						currentHeight = startHeight - dragY;
+
+						if (startHeight >= maxHeight * .9) {
+							currentHeight = Math.max(normalHeight, Math.min(currentHeight, maxHeight));
+						} else {
+							currentHeight = Math.max(0, Math.min(currentHeight, maxHeight));
+						}
+
+						$dialog.css('height', currentHeight + 'px');
+						e.preventDefault();
+					});
+
+					$touch.off('touchend.layer').on('touchend.layer', function () {
+						$touch.off('touchmove.layer');
+						$dialog.removeClass('is_dragging');
+
+						if (startHeight >= maxHeight * .9) {
+							if (dragY > 50) {
+								$dialog.css('height', normalHeight + 'px');
+							} else {
+								$dialog.css('height', '100dvh');
+							}
+							return;
+						}
+
+						if (dragY > 100) {
+							$dialog.css('height', normalHeight + 'px');
+							self.close($dialog.attr('id'));
+							return;
+						}
+
+						if (dragY < -50) {
+							$dialog.css('height', '100dvh');
+							return;
+						}
+
+						$dialog.css('height', normalHeight + 'px');
+					});
+				});
+			},
+
+			add: function (id, options) {
+				var $dialog = $('#' + id);
+				if (!$dialog.length) return null;
+
+				if (this.obj[id]) {
+					this.obj[id].options = options || {};
+					return this.obj[id];
+				}
+
+				var data = {
+					id: id,
+					$dialog: $dialog,
+					$focus: $dialog.find('.focus').first(),
+					currentTarget: null,
+					options: options || {}
+				};
+
+				this.obj[id] = data;
+				return data;
+			},
+
+			open: function (id, options) {
+				var self = this;
+				var trigger = document.activeElement;
+
+				options = $.extend({
+					closePrevious: false,
+					onOpen: null,
+					onClose: null
+				}, options || {});
+
+				var data = this.add(id, options);
+				if (!data) return;
+
+				data.currentTarget = trigger;
+
+				if (options.closePrevious) {
+					this.removePrevious();
+				} else {
+					this.backgroundCurrent();
+				}
+
+				this.stack.push(id);
+
+				var dialog = data.$dialog[0];
+
+				if (!dialog.open) {
+					dialog.showModal();
+				}
+
+				data.$dialog.css('height', '400px');
+
+				requestAnimationFrame(function () {
+					data.$dialog.removeClass('is_background').addClass('is_current').removeAttr('aria-hidden').prop('inert', false).css('transform', '');
+				});
+
+				data.$focus.attr('tabindex', '-1');
+
+				setTimeout(function () {
+					if (data.$focus.length) {
+						data.$focus.focus();
+					} else {
+						data.$dialog.focus();
+					}
+				}, 0);
+
+				if (typeof options.onOpen === 'function') {
+					options.onOpen({
+						id: id,
+						modal: data.$dialog[0],
+						$modal: data.$dialog,
+						trigger: data.currentTarget,
+						stack: this.stack.slice()
+					});
+				}
+			},
+
+			backgroundCurrent: function () {
+				if (!this.stack.length) return;
+
+				var currentId = this.stack[this.stack.length - 1];
+				var current = this.obj[currentId];
+				if (!current) return;
+
+				current.$dialog.removeClass('is_current').addClass('is_background').attr('aria-hidden', 'true').prop('inert', true);
+			},
+
+			removePrevious: function () {
+				if (!this.stack.length) return;
+
+				var previousId = this.stack[this.stack.length - 1];
+				var previous = this.obj[previousId];
+				if (!previous) return;
+
+				if (previous.$dialog[0].open) {
+					previous.$dialog[0].close();
+				}
+
+				previous.$dialog.removeClass('is_current is_background').removeAttr('aria-hidden').prop('inert', false).css('transform', '').css('height', '400px');
+
+				this.stack.pop();
+
+				if (typeof previous.options.onClose === 'function') {
+					previous.options.onClose({
+						id: previousId,
+						modal: previous.$dialog[0],
+						$modal: previous.$dialog,
+						trigger: previous.currentTarget,
+						stack: this.stack.slice()
+					});
+				}
+
+				delete this.obj[previousId];
+			},
+
+			/* =====================================================
+			   모달 닫기
+			   id가 'all'이면 열린 모달 전체 닫기
+			===================================================== */
+			close: function (id, skipRestore) {
+				var self = this;
+
+				/* 모든 레이어 닫기 */
+				if (id === 'all') {
+					if (!this.stack.length) return;
+
+					var firstId = this.stack[0];
+					var firstData = this.obj[firstId];
+					var ids = this.stack.slice().reverse();
+
+					$.each(ids, function (_, modalId) {
+						self.close(modalId, true);
+					});
+
+					if (firstData && firstData.currentTarget && document.body.contains(firstData.currentTarget)) {
+						setTimeout(function () {
+							$(firstData.currentTarget).focus();
+						}, 0);
+					}
+
+					return;
+				}
+
+				var data = this.obj[id];
+				var index = this.stack.indexOf(id);
+
+				if (!data) return;
+				if (index === -1) return;
+
+				/* 최상위 모달만 일반 close 가능 */
+				if (index !== this.stack.length - 1) return;
+
+				var callbackData = {
+					id: id,
+					modal: data.$dialog[0],
+					$modal: data.$dialog,
+					trigger: data.currentTarget,
+					stack: this.stack.slice()
+				};
+
+				data.$dialog.removeClass('is_current is_background').removeAttr('aria-hidden').prop('inert', false).css('transform', '').css('height', '400px');
+
+				setTimeout(function () {
+					if (data.$dialog[0].open) {
+						data.$dialog[0].close();
+					}
+				}, 300);
+
+				this.stack.pop();
+
+				if (typeof data.options.onClose === 'function') {
+					data.options.onClose(callbackData);
+				}
+
+				delete this.obj[id];
+
+				/* all 처리에서는 이전 레이어를 복구하지 않음 */
+				if (skipRestore) {
+					return;
+				}
+
+				/* 이전 레이어 복구 */
+				if (this.stack.length) {
+					this.restorePrevious();
+				} else if (data.currentTarget && document.body.contains(data.currentTarget)) {
+					setTimeout(function () {
+						$(data.currentTarget).focus();
+					}, 0);
+				}
+			},
+
+			restorePrevious: function () {
+				if (!this.stack.length) return;
+
+				var previousId = this.stack[this.stack.length - 1];
+				var previous = this.obj[previousId];
+				if (!previous) return;
+
+				previous.$dialog.removeClass('is_background').addClass('is_current').removeAttr('aria-hidden').prop('inert', false).css('transform', '').css('height', '400px');
+
+				if (!previous.$dialog[0].open) {
+					previous.$dialog[0].showModal();
+				}
+
+				setTimeout(function () {
+					if (previous.$focus.length) {
+						previous.$focus.focus();
+					}
+				}, 0);
+			}
+		};
+
+		/* 실행 */
+		layerOpen.init();
+
+		/* 클릭 이벤트로 열기 */
+		$('#test2').on('click', function () {
+			layerOpen.open('layer1', {
+				closePrevious: true,
+				onOpen: function (data) {
+					console.log('열기 콜백', data);
+				},
+				onClose: function (data) {
+					console.log('닫기 콜백', data);
+				}
+			});
+		});
+	</script>
 </body>
+
 </html>
