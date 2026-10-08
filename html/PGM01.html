@@ -103,7 +103,7 @@
 
 <body>
 
-    <button type="button" id="test2">클릭 이벤트로 열기</button>
+    <button type="button" id="test2">클릭 이벤트로 열기11</button>
     <button type="button" id="test3" class="JS-layerOpen2" aria-controls="layer1">기본 클래스로 열기</button>
 
     <dialog id="layer3" class="layerComm Add_type_bottom">
@@ -134,7 +134,7 @@
         <div class="layer_body">
             <button type="button" class="touch">☰ 터치해서 움직이기</button>
             <div class="over">
-                <p>첫번째 레이어11111(스크롤 O)</p>
+                <p>첫번째 레이어 (스크롤 O)</p>
                 <button type="button" class="JS-layerOpen2" aria-controls="layer2">두번째 레이어 열기</button>
                 <button type="button" class="JS-layerOpen2-closePrevious" aria-controls="layer2">첫번째 닫고 두번째 열기</button>
                 <button type="button" class="close33">클릭 이벤트로 닫기</button>
@@ -208,10 +208,7 @@
                         dragY = currentY - startY;
 
                         if (dragY < 0) {
-                            // [위로 드래그]: over 영역에 스크롤이 없는 모달이면 위로 늘리지 않음
-                            if (!data.hasScroll) {
-                                return;
-                            }
+                            if (!data.hasScroll) return;
 
                             var currentHeight = startHeight - dragY;
                             currentHeight = Math.min(currentHeight, maxHeight);
@@ -220,7 +217,6 @@
                                 'transform': 'translateY(0)'
                             });
                         } else {
-                            // [아래로 드래그]: 스크롤 여부와 상관없이 닫기는 가능하도록 수행
                             $dialog.css({
                                 'height': startHeight + 'px',
                                 'transform': 'translateY(' + dragY + 'px)'
@@ -235,13 +231,16 @@
 
                         $dialog.removeClass('is_dragging');
 
+                        // 1. 풀 화면 상태(90% 이상)에서 동작
                         if (startHeight >= maxHeight * 0.9) {
-                            if (dragY > 100) {
+                            if (dragY > 80) {
+                                // 아래로 80px 이상 드래그 시 -> 바로 닫히지 않고 중간 화면(normalHeight)으로 축소
                                 $dialog.css({
                                     'height': normalHeight + 'px',
                                     'transform': ''
                                 });
                             } else {
+                                // 드래그 거리가 짧으면 풀 화면 유구
                                 $dialog.css({
                                     'height': '100dvh',
                                     'transform': ''
@@ -250,15 +249,18 @@
                             return;
                         }
 
+                        // 2. 중간 높이 상태(normalHeight)에서 동작
                         if (dragY > 80) {
+                            // 중간 화면에서 아래로 내리면 모달 닫기
                             self.close(id);
                         } else if (dragY < -80 && data.hasScroll) {
-                            // 스크롤이 있는 경우에만 위로 끝까지 펼치기 허용
+                            // 스크롤이 있는 경우 위로 올리면 풀 화면으로 확장
                             $dialog.css({
                                 'height': '100dvh',
                                 'transform': ''
                             });
                         } else {
+                            // 원래 중간 높이로 복귀
                             $dialog.css({
                                 'height': normalHeight + 'px',
                                 'transform': ''
