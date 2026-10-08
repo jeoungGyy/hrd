@@ -8,18 +8,18 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <style>
         * {
-            box-sizing: border-box
+            box-sizing: border-box;
         }
 
         body {
             margin: 0;
-            padding: 30px
+            padding: 30px;
         }
 
         button {
             padding: 10px;
             border: 1px solid #000;
-            background: #fff
+            background: #fff;
         }
 
         .layerComm {
@@ -28,17 +28,17 @@
             max-width: none;
             max-height: 100dvh;
             border: 0;
-            background: transparent
+            background: transparent;
         }
 
         .layerComm::backdrop {
-            background: rgb(0, 0, 0, .4);
+            background: rgba(0, 0, 0, .4);
             opacity: 0;
-            transition: opacity .3s cubic-bezier(0.25, 1, 0.5, 1)
+            transition: opacity .3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .layerComm.is_background {
-            pointer-events: none
+            pointer-events: none;
         }
 
         .layerComm.Add_type_bottom {
@@ -47,17 +47,16 @@
             max-height: 100dvh;
             padding: 0;
             transform: translateY(100%);
-            /* iOS Safari 모션 자연스럽게 처리 */
             transition: transform .3s cubic-bezier(0.25, 1, 0.5, 1), height .3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .layerComm.Add_type_bottom.is_current {
             transform: translateY(0);
-            pointer-events: auto
+            pointer-events: auto;
         }
 
         .layerComm.Add_type_bottom.is_current::backdrop {
-            opacity: 1
+            opacity: 1;
         }
 
         .layerComm .layer_body {
@@ -68,7 +67,7 @@
             min-height: 0;
             padding: 30px;
             background: #fff;
-            border-radius: 20px 20px 0 0
+            border-radius: 20px 20px 0 0;
         }
 
         .layerComm .over {
@@ -76,7 +75,7 @@
             overflow-y: auto;
             flex: 1;
             min-height: 0;
-            -webkit-overflow-scrolling: touch
+            -webkit-overflow-scrolling: touch;
         }
 
         .layerComm .touch {
@@ -85,26 +84,27 @@
             margin-bottom: 20px;
             touch-action: none;
             user-select: none;
-            cursor: grab
+            cursor: grab;
         }
 
         .layerComm .touch:active {
-            cursor: grabbing
+            cursor: grabbing;
         }
 
-        .layerComm.is_dragging {
-            transition: none !important
+        .layerComm.is_dragging,
+        .layerComm.no_transition {
+            transition: none !important;
         }
 
         .layerComm button {
-            margin: 5px 0
+            margin: 5px 0;
         }
     </style>
 </head>
 
 <body>
 
-    <button type="button" id="test2">클릭 이벤트로 열기33</button>
+    <button type="button" id="test2">클릭 이벤트로 열기44</button>
     <button type="button" id="test3" class="JS-layerOpen2" aria-controls="layer1">기본 클래스로 열기</button>
 
     <dialog id="layer3" class="layerComm Add_type_bottom">
@@ -238,7 +238,7 @@
 
                         $dialog.removeClass('is_dragging');
 
-                        // 1. 풀 화면 상태(90% 이상)
+                        // 1. 풀 화면 상태(100dvh)일 때 아래로 드래그 시
                         if (startHeight >= maxHeight * 0.9) {
                             if (dragY > 80) {
                                 $dialog.css({
@@ -254,7 +254,7 @@
                             return;
                         }
 
-                        // 2. 중간 높이 상태
+                        // 2. 중간 높이 상태일 때
                         if (dragY > 80) {
                             self.close(id);
                         } else if (dragY < -80 && data.hasScroll) {
@@ -359,21 +359,18 @@
 
                 var dialog = data.$dialog[0];
 
-                // 1. 초기 스타일 설정 (transform 시작점 보장)
                 data.$dialog
-                    .removeClass('is_background')
+                    .removeClass('is_background no_transition')
                     .removeAttr('aria-hidden')
                     .prop('inert', false)
                     .css('transform', '');
 
-                // 2. dialog.showModal() 호출
                 if (!dialog.open) {
                     dialog.showModal();
                 }
 
                 this.setNormalHeight(data);
 
-                // 3. iOS Safari 모션 씹힘 해결: requestAnimationFrame으로 렌더링 1프레임 지연 후 활성화 클래스 추가
                 requestAnimationFrame(function () {
                     requestAnimationFrame(function () {
                         data.$dialog.addClass('is_current');
@@ -427,7 +424,7 @@
                 }
 
                 previous.$dialog
-                    .removeClass('is_current is_background')
+                    .removeClass('is_current is_background no_transition')
                     .removeAttr('aria-hidden')
                     .prop('inert', false)
                     .css('transform', '')
@@ -486,7 +483,7 @@
                 };
 
                 data.$dialog
-                    .removeClass('is_current is_background')
+                    .removeClass('is_current is_background no_transition')
                     .removeAttr('aria-hidden')
                     .prop('inert', false)
                     .css('transform', '');
@@ -537,7 +534,7 @@
                 requestAnimationFrame(function () {
                     requestAnimationFrame(function () {
                         previous.$dialog
-                            .removeClass('is_background')
+                            .removeClass('is_background no_transition')
                             .addClass('is_current')
                             .removeAttr('aria-hidden')
                             .prop('inert', false)
