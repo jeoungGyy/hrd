@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,7 +46,6 @@
             max-height: 100dvh;
             padding: 0;
             transform: translateY(100%);
-            /* iOS Safari 모션 자연스럽게 처리 */
             transition: transform .3s cubic-bezier(0.25, 1, 0.5, 1), height .3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
@@ -104,7 +102,7 @@
 
 <body>
 
-    <button type="button" id="test2">클릭 이벤트로 열기33</button>
+    <button type="button" id="test2">클릭 이벤트로 열기4444</button>
     <button type="button" id="test3" class="JS-layerOpen2" aria-controls="layer1">기본 클래스로 열기</button>
 
     <dialog id="layer3" class="layerComm Add_type_bottom">
@@ -140,6 +138,7 @@
                 <button type="button" class="JS-layerOpen2-closePrevious" aria-controls="layer2">첫번째 닫고 두번째 열기</button>
                 <button type="button" class="close33">클릭 이벤트로 닫기</button>
                 <button type="button" class="close">닫기</button>
+                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
                 스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
                 스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
                 스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
@@ -219,14 +218,15 @@
 
                             var currentHeight = startHeight - dragY;
                             currentHeight = Math.min(currentHeight, maxHeight);
+
                             $dialog.css({
-                                'height': currentHeight + 'px',
-                                'transform': 'translateY(0)'
+                                height: currentHeight + 'px',
+                                transform: 'translateY(0)'
                             });
                         } else {
                             $dialog.css({
-                                'height': startHeight + 'px',
-                                'transform': 'translateY(' + dragY + 'px)'
+                                height: startHeight + 'px',
+                                transform: 'translateY(' + dragY + 'px)'
                             });
                         }
 
@@ -238,34 +238,34 @@
 
                         $dialog.removeClass('is_dragging');
 
-                        // 1. 풀 화면 상태(90% 이상)
+                        /* 풀 화면 상태 */
                         if (startHeight >= maxHeight * 0.9) {
                             if (dragY > 80) {
                                 $dialog.css({
-                                    'height': normalHeight + 'px',
-                                    'transform': ''
+                                    height: normalHeight + 'px',
+                                    transform: 'translateY(0)'
                                 });
                             } else {
                                 $dialog.css({
-                                    'height': '100dvh',
-                                    'transform': ''
+                                    height: '100dvh',
+                                    transform: 'translateY(0)'
                                 });
                             }
                             return;
                         }
 
-                        // 2. 중간 높이 상태
+                        /* 일반 높이 상태 */
                         if (dragY > 80) {
                             self.close(id);
                         } else if (dragY < -80 && data.hasScroll) {
                             $dialog.css({
-                                'height': '100dvh',
-                                'transform': ''
+                                height: '100dvh',
+                                transform: 'translateY(0)'
                             });
                         } else {
                             $dialog.css({
-                                'height': normalHeight + 'px',
-                                'transform': ''
+                                height: normalHeight + 'px',
+                                transform: 'translateY(0)'
                             });
                         }
                     });
@@ -301,35 +301,47 @@
 
                 var hasScroll = $over[0].scrollHeight > $over[0].clientHeight;
                 data.hasScroll = hasScroll;
+
                 return hasScroll;
             },
 
-            setNormalHeight: function (data) {
+            setNormalHeight: function (data, callback) {
                 var self = this;
                 var $dialog = data.$dialog;
+                var $body = $dialog.find('.layer_body');
 
+                /* 자연 높이 측정을 위해 잠시 height 제한 제거 */
                 $dialog.css('height', 'auto');
+                $body.css('height', 'auto');
 
                 requestAnimationFrame(function () {
                     var contentHeight = $dialog.outerHeight();
                     var maxHeight = window.innerHeight;
-                    var targetHeight = Math.min(300, maxHeight);
+                    var targetHeight = Math.min(400, maxHeight);
 
-                    $dialog.css('height', targetHeight + 'px');
+                    /* 자연 높이가 화면보다 크면 일단 화면 높이까지 제한 */
+                    var measureHeight = Math.min(contentHeight, maxHeight);
+
+                    $dialog.css('height', measureHeight + 'px');
+                    $body.css('height', '100%');
 
                     requestAnimationFrame(function () {
                         var hasScroll = self.checkScroll(data);
 
                         if (hasScroll) {
                             data.normalHeight = targetHeight;
+                            $dialog.css('height', targetHeight + 'px');
                         } else {
-                            if (contentHeight < targetHeight) {
-                                data.normalHeight = contentHeight;
-                                $dialog.css('height', contentHeight + 'px');
-                            } else {
-                                data.normalHeight = targetHeight;
-                            }
+                            data.normalHeight = contentHeight;
+                            $dialog.css('height', contentHeight + 'px');
                         }
+
+                        /* 높이 계산이 완전히 끝난 후 다음 작업 실행 */
+                        requestAnimationFrame(function () {
+                            if (typeof callback === 'function') {
+                                callback();
+                            }
+                        });
                     });
                 });
             },
@@ -359,24 +371,41 @@
 
                 var dialog = data.$dialog[0];
 
-                // 1. 초기 스타일 설정 (transform 시작점 보장)
+                /*
+                 * iOS Safari 대응
+                 * 열기 전에 transform 시작점을 인라인으로 확정한다.
+                 */
                 data.$dialog
+                    .removeClass('is_current')
                     .removeClass('is_background')
                     .removeAttr('aria-hidden')
                     .prop('inert', false)
-                    .css('transform', '');
+                    .css({
+                        height: '',
+                        transform: 'translateY(100%)'
+                    });
 
-                // 2. dialog.showModal() 호출
                 if (!dialog.open) {
                     dialog.showModal();
                 }
 
-                this.setNormalHeight(data);
+                /*
+                 * 높이 계산이 완료된 다음에만 is_current를 적용한다.
+                 * 따라서 height:auto 상태가 사용자에게 보이는 것을 방지한다.
+                 */
+                this.setNormalHeight(data, function () {
+                    data.$dialog.css({
+                        transform: 'translateY(100%)'
+                    });
 
-                // 3. iOS Safari 모션 씹힘 해결: requestAnimationFrame으로 렌더링 1프레임 지연 후 활성화 클래스 추가
-                requestAnimationFrame(function () {
                     requestAnimationFrame(function () {
                         data.$dialog.addClass('is_current');
+
+                        requestAnimationFrame(function () {
+                            data.$dialog.css({
+                                transform: 'translateY(0)'
+                            });
+                        });
                     });
                 });
 
@@ -406,6 +435,7 @@
 
                 var currentId = this.stack[this.stack.length - 1];
                 var current = this.obj[currentId];
+
                 if (!current) return;
 
                 current.$dialog
@@ -420,6 +450,7 @@
 
                 var previousId = this.stack[this.stack.length - 1];
                 var previous = this.obj[previousId];
+
                 if (!previous) return;
 
                 if (previous.$dialog[0].open) {
@@ -430,8 +461,10 @@
                     .removeClass('is_current is_background')
                     .removeAttr('aria-hidden')
                     .prop('inert', false)
-                    .css('transform', '')
-                    .css('height', '');
+                    .css({
+                        transform: '',
+                        height: ''
+                    });
 
                 this.stack.pop();
 
@@ -467,6 +500,7 @@
                             $(firstData.currentTarget).focus();
                         }, 0);
                     }
+
                     return;
                 }
 
@@ -485,6 +519,10 @@
                     stack: this.stack.slice()
                 };
 
+                /*
+                 * 닫을 때는 transform을 제거하여
+                 * CSS의 translateY(100%)가 닫힘 위치가 되도록 한다.
+                 */
                 data.$dialog
                     .removeClass('is_current is_background')
                     .removeAttr('aria-hidden')
@@ -495,6 +533,7 @@
                     if (data.$dialog[0].open) {
                         data.$dialog[0].close();
                     }
+
                     data.$dialog.css('height', '');
                 }, 300);
 
@@ -518,32 +557,49 @@
             },
 
             restorePrevious: function () {
+                var self = this;
+
                 if (!this.stack.length) return;
 
                 var previousId = this.stack[this.stack.length - 1];
                 var previous = this.obj[previousId];
+
                 if (!previous) return;
 
                 if (!previous.$dialog[0].open) {
                     previous.$dialog[0].showModal();
                 }
 
+                /*
+                 * 복원할 때도 먼저 transform 시작점을 확정한다.
+                 */
+                previous.$dialog
+                    .removeClass('is_current')
+                    .css({
+                        transform: 'translateY(0)'
+                    });
+
                 if (previous.normalHeight) {
                     previous.$dialog.css('height', previous.normalHeight + 'px');
-                } else {
-                    this.setNormalHeight(previous);
-                }
 
-                requestAnimationFrame(function () {
                     requestAnimationFrame(function () {
                         previous.$dialog
                             .removeClass('is_background')
                             .addClass('is_current')
                             .removeAttr('aria-hidden')
                             .prop('inert', false)
-                            .css('transform', '');
+                            .css('transform', 'translateY(0)');
                     });
-                });
+                } else {
+                    this.setNormalHeight(previous, function () {
+                        previous.$dialog
+                            .removeClass('is_background')
+                            .addClass('is_current')
+                            .removeAttr('aria-hidden')
+                            .prop('inert', false)
+                            .css('transform', 'translateY(0)');
+                    });
+                }
 
                 setTimeout(function () {
                     if (previous.$focus.length) {
@@ -568,5 +624,4 @@
         });
     </script>
 </body>
-
 </html>
