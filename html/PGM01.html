@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dialog Touch Drag</title>
+    <title>Dialog Touch Drag (translateY Only)</title>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <style>
         * {
@@ -41,18 +41,18 @@
             pointer-events: none;
         }
 
+        /* Bottom Sheet 기본 설정 */
         .layerComm.Add_type_bottom {
             inset: auto 0 0 0;
             width: 100%;
+            height: 100dvh; /* 전체 가시 높이 고정 (Reflow 방지) */
             max-height: 100dvh;
             padding: 0;
             transform: translateY(100%);
-            transition: transform .3s cubic-bezier(0.25, 1, 0.5, 1), height .3s cubic-bezier(0.25, 1, 0.5, 1);
-			height: 300px;
+            transition: transform .3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .layerComm.Add_type_bottom.is_current {
-            transform: translateY(0);
             pointer-events: auto;
         }
 
@@ -60,6 +60,7 @@
             opacity: 1;
         }
 
+        /* layer_body: flex 구조 적용 및 가시 영역에 맞춘 높이 제한 */
         .layerComm .layer_body {
             display: flex;
             flex-direction: column;
@@ -71,6 +72,7 @@
             border-radius: 20px 20px 0 0;
         }
 
+        /* over: flex-1과 min-height: 0으로 가시 화면 내 유동적 스크롤 영역 형성 */
         .layerComm .over {
             overflow-x: hidden;
             overflow-y: auto;
@@ -92,6 +94,7 @@
             cursor: grabbing;
         }
 
+        /* 드래그 도중 및 상태 변경 프레임 트랜지션 완전 차단 */
         .layerComm.is_dragging,
         .layerComm.no_transition {
             transition: none !important;
@@ -105,7 +108,7 @@
 
 <body>
 
-    <button type="button" id="test2">클릭 이벤트로 66666</button>
+    <button type="button" id="test2">클릭 이벤트로 열기11111</button>
     <button type="button" id="test3" class="JS-layerOpen2" aria-controls="layer1">기본 클래스로 열기</button>
 
     <dialog id="layer3" class="layerComm Add_type_bottom">
@@ -115,7 +118,7 @@
                 <p>세번째 레이어 (스크롤 O)</p>
                 <button type="button" class="close44">모든 레이어 한번에 닫기</button>
                 <button type="button" class="close">닫기</button>
-                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
+                <br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
             </div>
         </div>
     </dialog>
@@ -141,13 +144,9 @@
                 <button type="button" class="JS-layerOpen2-closePrevious" aria-controls="layer2">첫번째 닫고 두번째 열기</button>
                 <button type="button" class="close33">클릭 이벤트로 닫기</button>
                 <button type="button" class="close">닫기</button>
-                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
-                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
-                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
-                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
-                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
-                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
-                스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
+                <br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
+                <br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
+                <br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
             </div>
         </div>
     </dialog>
@@ -192,22 +191,28 @@
                     self.close(this.id);
                 });
 
-                /* Touch Drag */
-                $(document).off('touchstart.layer', '.touch').on('touchstart.layer', '.touch', function (e) {
-                    var $touch = $(this);
-                    var $dialog = $touch.closest('dialog');
+                /* Touch Drag (translateY & 스크롤 연동 제어) */
+                $(document).off('touchstart.layer', '.touch, .layer_body').on('touchstart.layer', '.touch, .layer_body', function (e) {
+                    var $target = $(e.target);
+                    var $dialog = $(this).closest('dialog');
                     var id = $dialog.attr('id');
                     var data = self.obj[id];
 
                     if (!$dialog.hasClass('is_current') || !data) return;
 
-                    var startY = e.originalEvent.touches[0].clientY;
-                    var startHeight = $dialog.outerHeight();
-                    var normalHeight = data.normalHeight || startHeight;
-                    var dragY = 0;
-                    var maxHeight = window.innerHeight;
+                    var $over = $dialog.find('.over');
+                    var isTouchHandle = $target.closest('.touch').length > 0;
 
-                    $dialog.addClass('is_dragging');
+                    // 터치 핸들이 아니고, 내부 스크롤 영역이 최상단(scrollTop > 0)이 아니면 모달 드래그 차단 (스크롤 우선)
+                    if (!isTouchHandle && $over.length && $over.scrollTop() > 0) {
+                        return;
+                    }
+
+                    var startY = e.originalEvent.touches[0].clientY;
+                    var maxHeight = window.innerHeight;
+                    var startTranslateY = data.currentTranslateY;
+                    var dragY = 0;
+                    var isDraggingStarted = false;
 
                     $(document).off('touchmove.layerDrag touchend.layerDrag touchcancel.layerDrag');
 
@@ -215,21 +220,26 @@
                         var currentY = e.originalEvent.touches[0].clientY;
                         dragY = currentY - startY;
 
-                        if (dragY < 0) {
-                            if (!data.hasScroll) return;
-
-                            var currentHeight = startHeight - dragY;
-                            currentHeight = Math.min(currentHeight, maxHeight);
-                            $dialog.css({
-                                'height': currentHeight + 'px',
-                                'transform': 'translateY(0)'
-                            });
-                        } else {
-                            $dialog.css({
-                                'height': startHeight + 'px',
-                                'transform': 'translateY(' + dragY + 'px)'
-                            });
+                        // 스크롤이 내려간 상태에서 아래로 스크롤하는 중이면 모달 드래그 방지
+                        if (!isTouchHandle && $over.length && $over.scrollTop() > 0) {
+                            return;
                         }
+
+                        // 위로 드래그 시 (dragY < 0) 스크롤이 없는 모달이거나 이미 풀화면일 때 중단
+                        if (dragY < 0 && (!data.hasScroll || startTranslateY === 0)) return;
+
+                        // 아래로 스크롤 시 스크롤 콘텐츠가 위에 남아있으면 중단
+                        if (dragY > 0 && !isTouchHandle && $over.length && $over.scrollTop() > 0) return;
+
+                        if (!isDraggingStarted) {
+                            isDraggingStarted = true;
+                            $dialog.addClass('is_dragging');
+                        }
+
+                        var nextTranslateY = startTranslateY + dragY;
+                        nextTranslateY = Math.max(0, Math.min(nextTranslateY, maxHeight));
+
+                        $dialog.css('transform', 'translateY(' + nextTranslateY + 'px)');
 
                         if (e.cancelable) e.preventDefault();
                     });
@@ -237,38 +247,36 @@
                     $(document).on('touchend.layerDrag touchcancel.layerDrag', function () {
                         $(document).off('touchmove.layerDrag touchend.layerDrag touchcancel.layerDrag');
 
+                        if (!isDraggingStarted) return;
                         $dialog.removeClass('is_dragging');
 
-                        // 1. 풀 화면 상태(100dvh)일 때 아래로 드래그 시
-                        if (startHeight >= maxHeight * 0.9) {
+                        var targetTranslateY = data.normalTranslateY;
+                        var closeFlag = false;
+
+                        // 1. 현재 풀 화면 상태일 때 (translateY === 0)
+                        if (startTranslateY === 0) {
                             if (dragY > 80) {
-                                $dialog.css({
-                                    // 'height': normalHeight + 'px',
-                                    'height': '',
-                                    'transform': ''
-                                });
+                                targetTranslateY = data.normalTranslateY; // 기본 높이로 복귀
                             } else {
-                                $dialog.css({
-                                    'height': '100dvh',
-                                    'transform': ''
-                                });
+                                targetTranslateY = 0; // 풀 화면 유지
                             }
-                            return;
+                        }
+                        // 2. 중간(기본) 높이 상태일 때
+                        else {
+                            if (dragY > 80) {
+                                closeFlag = true; // 모달 닫기
+                            } else if (dragY < -80 && data.hasScroll) {
+                                targetTranslateY = 0; // 풀 화면으로 확장
+                            } else {
+                                targetTranslateY = data.normalTranslateY; // 원래 위치 유지
+                            }
                         }
 
-                        // 2. 중간 높이 상태일 때
-                        if (dragY > 80) {
+                        if (closeFlag) {
                             self.close(id);
-                        } else if (dragY < -80 && data.hasScroll) {
-                            $dialog.css({
-                                'height': '100dvh',
-                                'transform': ''
-                            });
                         } else {
-                            $dialog.css({
-                                'height': normalHeight + 'px',
-                                'transform': ''
-                            });
+                            data.currentTranslateY = targetTranslateY;
+                            $dialog.css('transform', 'translateY(' + targetTranslateY + 'px)');
                         }
                     });
                 });
@@ -288,7 +296,8 @@
                     $dialog: $dialog,
                     $focus: $dialog.find('.focus').first(),
                     currentTarget: null,
-                    normalHeight: null,
+                    normalTranslateY: 0,
+                    currentTranslateY: 0,
                     hasScroll: false,
                     options: options || {}
                 };
@@ -301,6 +310,7 @@
                 var $over = data.$dialog.find('.over');
                 if (!$over.length) return false;
 
+                // 스크롤 영역의 실제 높이가 가시 영역보다 큰지 확인
                 var hasScroll = $over[0].scrollHeight > $over[0].clientHeight;
                 data.hasScroll = hasScroll;
                 return hasScroll;
@@ -309,31 +319,21 @@
             setNormalHeight: function (data) {
                 var self = this;
                 var $dialog = data.$dialog;
+                var maxHeight = window.innerHeight;
 
-                $dialog.css('height', 'auto');
+                // 기본 노출 높이: 화면 전체의 70%
+                var targetHeight = Math.round(maxHeight * 0.7);
 
-                requestAnimationFrame(function () {
-                    var contentHeight = $dialog.outerHeight();
-                    var maxHeight = window.innerHeight;
-                    var targetHeight = Math.min(300, maxHeight);
+                // 스크롤이 유효한지 체크
+                self.checkScroll(data);
 
-                    $dialog.css('height', targetHeight + 'px');
+                // 100dvh 전체 화면 기준으로 아래로 밀어낼 Y값 계산
+                var targetTranslateY = maxHeight - targetHeight;
 
-                    requestAnimationFrame(function () {
-                        var hasScroll = self.checkScroll(data);
+                data.normalTranslateY = targetTranslateY;
+                data.currentTranslateY = targetTranslateY;
 
-                        if (hasScroll) {
-                            data.normalHeight = targetHeight;
-                        } else {
-                            if (contentHeight < targetHeight) {
-                                data.normalHeight = contentHeight;
-                                $dialog.css('height', contentHeight + 'px');
-                            } else {
-                                data.normalHeight = targetHeight;
-                            }
-                        }
-                    });
-                });
+                $dialog.css('transform', 'translateY(' + targetTranslateY + 'px)');
             },
 
             open: function (id, options) {
@@ -362,20 +362,22 @@
                 var dialog = data.$dialog[0];
 
                 data.$dialog
-                    .removeClass('is_background no_transition')
+                    .removeClass('is_background')
                     .removeAttr('aria-hidden')
-                    .prop('inert', false)
-                    .css('transform', '');
+                    .prop('inert', false);
 
                 if (!dialog.open) {
                     dialog.showModal();
                 }
 
+                // 초기 translateY 위치 설정
                 this.setNormalHeight(data);
 
                 requestAnimationFrame(function () {
                     requestAnimationFrame(function () {
                         data.$dialog.addClass('is_current');
+                        // DOM 배치 후 스크롤 여부 재측정
+                        self.checkScroll(data);
                     });
                 });
 
@@ -426,11 +428,10 @@
                 }
 
                 previous.$dialog
-                    .removeClass('is_current is_background no_transition')
+                    .removeClass('is_current is_background')
                     .removeAttr('aria-hidden')
                     .prop('inert', false)
-                    .css('transform', '')
-                    .css('height', '');
+                    .css('transform', '');
 
                 this.stack.pop();
 
@@ -485,16 +486,16 @@
                 };
 
                 data.$dialog
-                    .removeClass('is_current is_background no_transition')
+                    .removeClass('is_current is_background')
                     .removeAttr('aria-hidden')
                     .prop('inert', false)
-                    .css('transform', '');
+                    .css('transform', 'translateY(100%)');
 
                 setTimeout(function () {
                     if (data.$dialog[0].open) {
                         data.$dialog[0].close();
                     }
-                    data.$dialog.css('height', '');
+                    data.$dialog.css('transform', '');
                 }, 300);
 
                 this.stack.pop();
@@ -527,20 +528,15 @@
                     previous.$dialog[0].showModal();
                 }
 
-                if (previous.normalHeight) {
-                    previous.$dialog.css('height', previous.normalHeight + 'px');
-                } else {
-                    this.setNormalHeight(previous);
-                }
+                previous.$dialog.css('transform', 'translateY(' + previous.currentTranslateY + 'px)');
 
                 requestAnimationFrame(function () {
                     requestAnimationFrame(function () {
                         previous.$dialog
-                            .removeClass('is_background no_transition')
+                            .removeClass('is_background')
                             .addClass('is_current')
                             .removeAttr('aria-hidden')
-                            .prop('inert', false)
-                            .css('transform', '');
+                            .prop('inert', false);
                     });
                 });
 
