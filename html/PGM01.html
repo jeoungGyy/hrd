@@ -15,7 +15,9 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
     <style>
-        :root { --vh: 100dvh; }
+        :root {
+            --vh: 100dvh;
+        }
 
         * {
 
@@ -108,8 +110,14 @@
             transition: none !important;
         }
 
-        .layerComm.Add_type_bottom.is_measure .layer_body { height: auto !important; }
-        .layerComm.Add_type_bottom.is_measure .over { flex: none !important; overflow: visible !important; }
+        .layerComm.Add_type_bottom.is_measure .layer_body {
+            height: auto !important;
+        }
+
+        .layerComm.Add_type_bottom.is_measure .over {
+            flex: none !important;
+            overflow: visible !important;
+        }
 
         .layerComm.Add_type_bottom.is_current {
 
@@ -197,7 +205,6 @@
             margin: 5px 0;
 
         }
-
     </style>
 
 </head>
@@ -208,7 +215,7 @@
 
 
 
-    <button type="button" id="test2">클릭 이벤트로 열기</button>
+    <button type="button" id="test2">클릭 이벤트로 열기444</button>
 
     <button type="button" id="test3" class="JS-layerOpen2" aria-controls="layer1">기본 클래스로 열기</button>
 
@@ -228,7 +235,8 @@
 
                 <button type="button" class="close">닫기</button>
 
-                <br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
+                <br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤
+                공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
 
             </div>
 
@@ -280,11 +288,14 @@
 
                 <button type="button" class="close">닫기</button>
 
-                <br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
+                <br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤
+                공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
 
-                <br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
+                <br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤
+                공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
 
-                <br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
+                <br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤 공간용<br><br>스크롤
+                공간용<br><br>스크롤 공간용<br><br>스크롤 공간용
 
             </div>
 
@@ -511,11 +522,11 @@
                 return data.hasScroll;
             },
 
-            setNormalHeight: function (data) {
+            setNormalHeight: function (data, animateOpen) {
                 var $dialog = data.$dialog;
                 var maxNormalHeight = Math.min(300, window.innerHeight);
 
-                // 콘텐츠의 자연 높이를 측정
+                // 콘텐츠의 자연 높이를 측정하기 위해 잠시 측정 모드로 변경
                 $dialog.removeClass('is_full').addClass('is_measure');
                 $dialog.css({ height: 'auto', transform: 'translateY(0px)' });
                 var contentHeight = Math.ceil($dialog.outerHeight());
@@ -524,11 +535,19 @@
                 // 콘텐츠가 짧으면 콘텐츠 높이, 길면 최대 300px
                 data.normalHeight = Math.max(1, Math.min(contentHeight, maxNormalHeight));
                 data.isExpanded = false;
+                data.hasScroll = contentHeight > data.normalHeight;
+
                 $dialog.css({
-                    height: data.normalHeight + 'px',
+                    height: animateOpen ? '0px' : data.normalHeight + 'px',
                     maxHeight: 'var(--vh, 100dvh)',
                     transform: 'translateY(0px)'
                 });
+
+                // 높이를 0으로 둔 뒤 레이아웃을 확정해 transition이 시작되도록 함
+                if (animateOpen) {
+                    $dialog[0].offsetHeight;
+                }
+
                 this.checkScroll(data);
             },
 
@@ -593,32 +612,22 @@
 
 
 
+                // 모달을 표시한 뒤 높이 0에서 목표 높이까지 애니메이션
                 if (!dialog.open) {
-
                     dialog.showModal();
-
                 }
 
-
-
-                // 초기 translateY 위치 설정
-
-                this.setNormalHeight(data);
-
-
+                this.setNormalHeight(data, true);
 
                 requestAnimationFrame(function () {
-
                     requestAnimationFrame(function () {
-
+                        // backdrop 표시와 함께 아래쪽에서 위로 열리도록 목표 높이 적용
                         data.$dialog.addClass('is_current');
+                        data.$dialog.css('height', data.normalHeight + 'px');
 
                         // DOM 배치 후 스크롤 여부 재측정
-
                         self.checkScroll(data);
-
                     });
-
                 });
 
 
